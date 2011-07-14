@@ -14,9 +14,16 @@
 	</head>
 	<body class="<?=body_classes()?>">
 		<div id="blueprint-container" class="container">
+			
+			<?php if (is_home() || is_front_page() ): ?>
+			<div id="header">
+				<h1 class="light">Parking and <br>Transportation</h1>
+			</div>
+			<?php else: ?>
 			<div id="header" class="span-24 last">
 				<h1 class="span-10"><a href="<?=bloginfo('url')?>"><?=bloginfo('name')?></a></h1>
 				<div class="span-14 last">
 				<?=get_menu('header-menu', 'menu horizontal', 'header-menu')?>
 				</div>
 			</div>
+			<?php endif; ?>
