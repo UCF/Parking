@@ -33,6 +33,10 @@
 	<div class="span-9 last">
 		<?=get_sidebar();?>
 	</div>
+	
+	<div class="clear"></div>
+	<?php get_template_part('templates/below-the-fold'); ?>
+	
 </div>
 
 
