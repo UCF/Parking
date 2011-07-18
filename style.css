@@ -14,12 +14,12 @@ body, html { color:#313130; }
 #home-menu ul li {display:block; float:left;  margin:0; padding:0; }
 #home-menu ul li a { display:block; font-size:35px; width:170px; padding-top:200px; height:40px; background-position:center -300px; text-decoration:none; font-weight:bold; color:black; text-align:center; }
 #home-menu ul li a:hover { background-position: center 19px; }
-#home-perm { background:url('static/img/icon-perm.png') top center no-repeat; }
-#home-cita { background:url('static/img/icon-cita.png') top center no-repeat; }
-#home-shut { background:url('static/img/icon-shut.png') top center no-repeat; }
-#home-rule { background:url('static/img/icon-rule.png') top center no-repeat; }
-#home-mail { background:url('static/img/icon-mail.png') top center no-repeat; }
-#home-form { background:url('static/img/icon-form.png') top center no-repeat; }
+#home-permits   { background:url('static/img/icon-perm.png') top center no-repeat; }
+#home-citations { background:url('static/img/icon-cita.png') top center no-repeat; }
+#home-shuttles  { background:url('static/img/icon-shut.png') top center no-repeat; }
+#home-rules     { background:url('static/img/icon-rule.png') top center no-repeat; }
+#home-contact   { background:url('static/img/icon-mail.png') top center no-repeat; }
+#home-forms     { background:url('static/img/icon-form.png') top center no-repeat; }
 
 .side-nav { padding-top:40px; }
 .side-nav h2 { font-size:10px; font-weight:bold; text-transform:uppercase; letter-spacing:2px; color:#333; margin:0; padding:0 0 10px 0; }

@@ -6,14 +6,29 @@
 		
 		<?php if (is_home() || is_front_page() ): ?>
 		<div id="home-menu">
-			<ul>
-				<li><a href="" class="light" id="home-perm">Permits</a></li>
-				<li><a href="" class="light" id="home-cita">Citations</a></li>
-				<li><a href="" class="light" id="home-shut">Shuttles</a></li>
-				<li><a href="" class="light" id="home-rule">Rules</a></li>
-				<li><a href="" class="light" id="home-mail">Contact</a></li>
-				<li><a href="" class="light" id="home-form">Forms</a></li>
-			</ul>
+			
+			<?php
+			
+			$locations = get_nav_menu_locations();
+			$menu      = @$locations['home-navigation'];
+			if (!$menu) {
+				echo "<div class='error'>Home Page Navigation not defined</div>";
+			} else {
+				
+				echo '<ul class="light">';
+				$items = wp_get_nav_menu_items($menu);
+				foreach($items as $key=>$item){
+					printf(
+						'<li><a href="%s" id="home-%s">%s</a></li>',
+						$item->url,
+						basename($item->url),
+						$item->title
+					);
+				}
+				echo '</ul>';
+			
+			} ?>
+			
 			<div class="clear"></div>
 		</div>
 		<?php else: ?>

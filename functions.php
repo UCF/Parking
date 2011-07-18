@@ -31,7 +31,7 @@ Config::$custom_post_types = array(
 	'Example',
 );
 
-Config::$body_classes = array('default',);
+Config::$body_classes = array();
 
 /**
  * Configure theme settings, see abstract class Field's descendants for
@@ -120,3 +120,13 @@ if ((bool)$theme_options['gw_verify']){
 		'content' => htmlentities($theme_options['gw_verify']),
 	);
 }
+
+
+
+/**
+ * Parking Contents
+ **/
+register_nav_menu('home-navigation', "Home Navigation");
+register_nav_menu('sidebar-nav-one', "Sidebar Nav One");
+register_nav_menu('sidebar-nav-two', "Sidebar Nav Two");
+register_nav_menu('below-fold-nav' , "Below the Fold Navigation");

@@ -24,25 +24,22 @@
 		</div>
 		
 		<div class="more">
-			<h3 class="rock">More Resources</h3>
 			<?php
-			wp_nav_menu(array(
-				'menu' => 'More Resources',
-				'menu_class' => 'light'
-			)); ?>
-			
-			
-			<ul>
-				<li><a href="" class="light">Bicycles</a></li>
-				<li><a href="" class="light">Carpooling</a></li>
-				<li><a href="" class="light">Disability Parking</a></li>
-				<li><a href="" class="light">Escort Services</a></li>
-				<li><a href="" class="light">Golf Carts</a></li>
-				<li><a href="" class="light">KnightLynx</a></li>
-				<li><a href="" class="light">Park ‘n’ Ride</a></li>
-				<li><a href="" class="light">Parking at UCF</a></li>
-				<li><a href="" class="light">Service Vehicles</a></li>
-			</ul>
+			$locations = get_nav_menu_locations();
+			$menu      = @$locations['below-fold-nav'];
+			if (!$menu){
+				echo "<!-- Below the fold navigation is not set -->";
+			} else {
+				$menu = wp_get_nav_menu_object($menu);
+				printf(
+					'<h3 class="rock">%s</h3> %s',
+					$menu->name,
+					wp_nav_menu(array(
+						'menu' => $menu,
+						'menu_class' => 'light',
+						'echo'       => false
+					)));
+			} ?>
 		</div>
 	</div>
 		
