@@ -5,18 +5,14 @@ Github Theme URI: https://github.com/UCF/Wordpress-Base-Theme
 Version: v0.0.1
 */
 
-/* Rockwell substitute */
-@import url('http://fonts.googleapis.com/css?family=Rokkitt&v2');
-
 body, html { color:#313130; }
-body, p, a, li { font-family: "Helvetica Neue", "Helvetica", "Arial", "sans-serif"; font-weight:400; }
 #header { border-bottom:1px solid #e1e1e1; padding:15px 0 35px; }
-#header .light { font-size:65px; line-height:61px; padding-left:122px; background:url('static/img/p.png') no-repeat left; color:#313130; }
+#header .light { font-size:65px; letter-spacing:1px; line-height:61px; padding-left:122px; background:url('static/img/p.png') no-repeat left; color:#313130; }
 
 #home-menu { padding-bottom:40px; }
 #home-menu ul { margin:0; padding:0; }
 #home-menu ul li {display:block; float:left;  margin:0; padding:0; }
-#home-menu ul li a { display:block; font-size:35px; width:170px; padding-top:200px; height:40px; background-position:center -300px; text-decoration:none; font-weight:400; color:black; text-align:center; }
+#home-menu ul li a { display:block; font-size:35px; width:170px; padding-top:200px; height:40px; background-position:center -300px; text-decoration:none; font-weight:bold; color:black; text-align:center; }
 #home-menu ul li a:hover { background-position: center 19px; }
 #home-perm { background:url('static/img/icon-perm.png') top center no-repeat; }
 #home-cita { background:url('static/img/icon-cita.png') top center no-repeat; }
@@ -32,4 +28,4 @@ body, p, a, li { font-family: "Helvetica Neue", "Helvetica", "Arial", "sans-seri
 .side-nav ul li a { color:#0161b2; font-size:45px; text-decoration:none; font-weight:200;}
 .ie .side-nav ul li a { font-size:40px; line-height:55px; }
 
-#below-fold h2 { font-family: "Rokkitt", serif; font-size:17px; font-weight:100; color:#9c9a9a;  }
+#below-fold h2 { font-size:17px; font-weight:100; color:#9c9a9a;  }
