@@ -25,6 +25,13 @@
 		
 		<div class="more">
 			<h3 class="rock">More Resources</h3>
+			<?php
+			wp_nav_menu(array(
+				'menu' => 'More Resources',
+				'menu_class' => 'light'
+			)); ?>
+			
+			
 			<ul>
 				<li><a href="" class="light">Bicycles</a></li>
 				<li><a href="" class="light">Carpooling</a></li>
