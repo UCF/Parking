@@ -4,7 +4,7 @@
 		<h2 class="rock">Parking Updates</h2>
 		<?php while(have_posts()): the_post();?>
 		<article>
-			<h3><a href="<?php the_permalink();?>"><?php the_title();?></a></h3>
+			<h3><a class="bold" href="<?php the_permalink();?>"><?php the_title();?></a></h3>
 			<p><a href="<?php the_permalink();?>"><?php the_excerpt();?></a></p>
 		</article>
 		<?php endwhile;?>
@@ -13,14 +13,14 @@
 	<div class="span-8">
 		<h2 class="rock">Traffic Updates</h2>
 		<article>
-			<h3><a href="<?php the_permalink();?>"><?php the_title();?></a></h3>
+			<h3><a class="bold" href="<?php the_permalink();?>"><?php the_title();?></a></h3>
 			<p><a href="<?php the_permalink();?>"><?php the_excerpt();?></a></p>
 		</article>
 	</div>
 	
 	<div class="span-9 last">
 		<div id="search">
-			Search
+			<?php get_template_part('searchform'); ?>
 		</div>
 		
 		<div class="more">
