@@ -226,6 +226,10 @@ class CheckboxField extends ChoicesField{
 }
 
 
+/**
+ * Given a mimetype, will attempt to return a string representing the
+ * application it is associated with.
+ **/
 function mimetype_to_application($mimetype){
 	switch($mimetype){
 		default:
@@ -254,6 +258,87 @@ function mimetype_to_application($mimetype){
 }
 
 
+/**
+ * Creates an array 
+ **/
+function shortcodes(){
+	$file = file_get_contents(THEME_DIR.'/shortcodes.php');
+	
+	$documentation = "\/\*\*(?P<documentation>.*?)\*\*\/";
+	$declaration   = "function[\s]+(?P<declaration>[^\(]+)";
+	
+	# Auto generated shortcode documentation.
+	$codes = array();
+	$auto  = array_filter(installed_custom_post_types(), create_function('$c', '
+		return $c->options("use_shortcode");
+	'));
+	foreach($auto as $code){
+		$scode  = $code->options('name').'-list';
+		$plural = $code->options('plural_name');
+		$doc = <<<DOC
+ Outputs a list of {$plural} filtered by tag
+ or category.
+
+ Example:
+ # Output a maximum of 5 items tagged foo or bar.
+ [{$scode} tags="foo bar" limit="5"]
+
+ # Output all objects categorized as foo
+ [{$scode} categories="foo"]
+DOC;
+		$codes[] = array(
+			'documentation' => $doc,
+			'shortcode'     => $scode,
+		);
+	}
+	
+	# Defined shortcode documentation
+	$found = preg_match_all("/{$documentation}\s*{$declaration}/is", $file, $matches);
+	if ($found){
+		foreach ($matches['declaration'] as $key=>$match){
+			$codes[$match]['documentation'] = $matches['documentation'][$key];
+			$codes[$match]['shortcode']     = str_replace(
+				array('sc_', '_',),
+				array('', '-',),
+				$matches['declaration'][$key]
+			);
+		}
+	}
+	return $codes;
+}
+
+
+function admin_help(){
+	global $post;
+	$shortcodes = shortcodes();
+	switch($post->post_title){
+		default:
+			?>
+			<h2>Available shortcodes:</h2>
+			<ul>
+				<?php foreach($shortcodes as $sc):?>
+				<li>
+					<h3><?=$sc['shortcode']?></h3>
+					<p><?=nl2br(str_replace(' *', '', htmlentities($sc['documentation'])))?></p>
+				</li>
+				<?php endforeach;?>
+			</ul>
+			<?php
+			break;
+	}
+}
+
+
+function admin_meta_boxes(){
+	global $post;
+	add_meta_box('page-help', 'Help', 'admin_help', 'page', 'normal', 'high');
+}
+add_action('admin_init', 'admin_meta_boxes');
+
+
+/**
+ * Returns true if the current request is on the login screen.
+ **/
 function is_login(){
 	return in_array($GLOBALS['pagenow'], array(
 			'wp-login.php',
@@ -262,6 +347,10 @@ function is_login(){
 }
 
 
+/**
+ * Given an arbitrary number of arguments, will return a string with the
+ * arguments dumped recursively.
+ **/
 function dump(){
 	$args = func_get_args();
 	$out  = array();
@@ -273,6 +362,10 @@ function dump(){
 }
 
 
+/**
+ * Will add a debug comment to the output when the get variable debug is set.
+ * Any value, including null, is enough to trigger it.
+ **/
 function debug($string){
 	if (!isset($_GET['debug'])){
 		return;
@@ -304,6 +397,9 @@ function __init__(){
 add_action('after_setup_theme', '__init__');
 
 
+/**
+ * Appends formatting styles for tinyMCE editor box.
+ **/
 function editor_styles($css){
 	$css   = array_map('trim', explode(',', $css));
 	$css[] = THEME_CSS_URL.'/formatting.css';
@@ -313,6 +409,9 @@ function editor_styles($css){
 add_filter('mce_css', 'editor_styles');
 
 
+/**
+ * Edits second row of buttons in tinyMCE editor.
+ **/
 function editor_format_options($row){
 	$found = array_search('underline', $row);
 	if (False !== $found){
@@ -356,6 +455,9 @@ function slug($s, $spaces='-'){
 }
 
 
+/**
+ * Given a name will return the custom post type's class name
+ **/
 function get_custom_post_type($name){
 	$installed = installed_custom_post_types();
 	foreach($installed as $object){
@@ -445,6 +547,9 @@ function create_attribute_string($attr){
 }
 
 
+/**
+ * Indent content passed by n indentations.
+ **/
 function indent($html, $n){
 	$tabs = str_repeat("\t", $n);
 	$html = explode("\n", $html);

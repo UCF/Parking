@@ -28,7 +28,7 @@
 			</div>
 			<?php else: ?>
 			<div id="header" class="span-24 last">
-				<h1 class="span-10"><a href="<?=bloginfo('url')?>"><?=bloginfo('name')?></a></h1>
+				<h1 class="span-10 sans"><a href="<?=bloginfo('url')?>"><?=bloginfo('name')?></a></h1>
 				<div class="span-14 last">
 				<?=get_menu('header-menu', 'menu horizontal', 'header-menu')?>
 				</div>
