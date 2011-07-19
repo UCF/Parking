@@ -27,10 +27,28 @@
 				<h1 class="light">Parking and <br>Transportation</h1>
 			</div>
 			<?php else: ?>
-			<div id="header" class="span-24 last">
-				<h1 class="span-10 sans"><a href="<?=bloginfo('url')?>"><?=bloginfo('name')?></a></h1>
-				<div class="span-14 last">
-				<?=get_menu('header-menu', 'menu horizontal', 'header-menu')?>
+			<div id="header">
+				<div class="span-11 page">
+					<h1 class="light"><a href="<?=bloginfo('url')?>"><?=str_replace('UCF', '', get_bloginfo('name'))?></a></h1>
 				</div>
+				<div class="span-13 last">
+					
+					<?php
+						$locations = get_nav_menu_locations();
+						$menu      = @$locations['header-menu'];
+						if (!$menu){
+							echo "<div class='error'>Header menu not yet created.</div>"; 
+						} else {
+							$items = wp_get_nav_menu_items($menu);
+							printf('<ul class="%s">', $post->post_name);
+							foreach($items as $key=>$item){
+								printf('<li><a class="%s" href="%s">%s</a></li>'."\n",
+									basename($item->url), $item->url, $item->title);
+							}
+							echo '</ul>';
+						}
+					?>
+				</div>
+				<div class="clear"></div>
 			</div>
 			<?php endif; ?>
