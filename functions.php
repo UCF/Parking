@@ -28,7 +28,7 @@ define('CB_DOMAIN', $theme_options['cb_domain']);
  * object.
  **/
 Config::$custom_post_types = array(
-	'Example',
+	'InfoBox',
 );
 
 Config::$body_classes = array();

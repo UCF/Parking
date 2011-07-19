@@ -41,4 +41,14 @@
 	?>
 	
 	
+	<?php
+	// shortcode, info-box right
+	global $short_codes;
+	if(isset($short_codes['right'])): ?>
+	<div id="infobox-right">
+		<?=$short_codes['right']?>
+	</div>
+	<?php endif; ?>
+	
+	
 <?php endif;?>

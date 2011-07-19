@@ -279,4 +279,49 @@ class Example extends CustomPostType{
 	}
 }
 
-?>
+
+class InfoBox extends CustomPostType{
+	public 
+		$name           = 'infobox',
+		$plural_name    = 'Info Boxes',
+		$singular_name  = 'Info Box',
+		$add_new_item   = 'Add Information Box',
+		$edit_item      = 'Edit Information Box',
+		$new_item       = 'New Information Box',
+		$public         = True,
+		$use_categories = False,
+		$use_thumbnails = False,
+		$use_editor     = True,
+		$use_order      = False,
+		$use_title      = True,
+		$use_shortcode  = True,
+		$use_metabox    = True;
+	
+	public function fields(){
+		return array(
+			array(
+				'name' => 'Slug',
+				'desc' => 'Unique identifier for this Information Box (used with the shortcode)',
+				'id'   => $this->options('name').'_slug',
+				'type' => 'text',
+			),
+			array(
+				'name'  => 'Example Information Boxes',
+				'desc'  => 'Question/Answer:
+							<br><code>
+								&lt;strong&gt;Question&lt;/strong&gt;: What is the number one reason citations are given?&lt;br&gt;<br>
+								&lt;strong&gt;Answer&lt;/strong&gt;: Parking in the wrong lot. &lt;span&gt;People just don&rsquo;t obey signs and park in the wrong lots.&lt;/span&gt;
+							</code>
+							<br><br>
+							Factoid:<br>
+							<code>
+								&lt;h2&gt;Did you Know?&lt;/h2&gt;<br>
+								The registered owner of the permit is responsible for all violations. So don&rsquo;t share your permit, you may end up paying your friend&rsquo;s citation.
+							</code>',
+				'id'    => $this->options('name').'_help',
+				'type'  => 'help',
+			),
+		);
+	}
+}
+
