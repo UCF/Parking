@@ -29,7 +29,12 @@ body, html { color:#313130; }
 #header .rules     { background-image:url('static/img/nav-rule.png'); }
 #header .contact   { background-image:url('static/img/nav-mail.png'); }
 #header .forms     { background-image:url('static/img/nav-form.png'); }
-
+#header .permits   .permits   { background-position: center -120px; }
+#header .citations .citations { background-position: center -120px; }
+#header .shuttles  .shuttles  { background-position: center -120px; }
+#header .rules     .rules     { background-position: center -120px; }
+#header .contact   .contact   { background-position: center -120px; }
+#header .forms     .forms     { background-position: center -120px; }
 
 
 #home-menu { padding-bottom:40px; }
