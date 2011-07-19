@@ -1,5 +1,7 @@
 <?php disallow_direct_load('page.php');?>
 <?php get_header(); the_post();?>
+
+
 <?php get_template_part('templates/info-question'); ?>
 
 <div class="span-15 append-1" id="<?=$post->post_name?>">

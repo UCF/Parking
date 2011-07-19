@@ -7,13 +7,14 @@ Version: v0.0.1
 
 body, html { color:#313130; }
 
+.page-content p { font-weight:100; font-size:14px; }
+.page-content h2 { font-size:45px; margin:0; padding:0 0 12px; color:#333; font-weight: normal; font-style: normal; line-height:normal; font-family: 'Helvetica Neue Light', 'f4', 'Helvetica Light', 'HelveNeuLig', 'Helvetica-Light', sans-serif; }
+.page-content h3 { color:#333; margin:0; padding:4px 0 8px; font-weight: normal; font-style: normal; line-height:normal; font-family: 'Helvetica Neue Bold', 'f1', 'Helvetica Bold', 'HelveticaBold', 'Helvetica-Bold', sans-serif; }
 
 
-
-
-
-
-
+#info-question { color:#0160af; border-bottom:1px solid #e1e1e1; padding:5px 0 15px; font-size:30px; font-weight:100; margin-bottom:20px;  }
+#info-question span { font-size:19px; }
+#info-question strong { font-weight:bold; }
 
 #header { border-bottom:1px solid #e1e1e1; padding:15px 0 35px; }
 #header h1 { font-size:65px; letter-spacing:1px; line-height:61px; padding-left:122px; background:url('static/img/p.png') no-repeat left; color:#313130; }
