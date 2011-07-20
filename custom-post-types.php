@@ -325,3 +325,63 @@ class InfoBox extends CustomPostType{
 	}
 }
 
+
+/**
+ * Header alert message. (.e.g. traffic advisory, severe weather)
+ **/
+class Alert extends CustomPostType{
+	public 
+		$name           = 'alert',
+		$plural_name    = 'Alerts',
+		$singular_name  = 'Alert',
+		$add_new_item   = 'Add New Alert',
+		$edit_item      = 'Edit Alert',
+		$new_item       = 'New Alert',
+		$use_thumbnails = True,
+		$use_metabox    = True;
+		
+	public function fields() {
+		$prefix = $this->options('name').'_';
+		return array(
+			array(
+				'name'	=> 'Text',
+				'desc'	=> '',
+				'id'	=> $prefix.'text',
+				'type'	=> 'text'
+			),
+			array(
+				'name'	=> 'Link Text',
+				'desc'	=> 'If left blank, the link will not be displayed.',
+				'id'	=> $prefix.'link_text',
+				'type'	=> 'text'
+			),
+			array(
+				'name'	=> 'Link URL',
+				'desc'	=> 'If left blank, the link portion of the alert will not be displayed.',
+				'id'	=> $prefix.'link_url',
+				'type'	=> 'text'
+			),
+			array(
+				'name'		=> 'Type',
+				'desc'		=> '',
+				'id'		=> $prefix.'type',
+				'type'		=> 'select',
+				'options'	=> Array('Advisory (Background Color: #F79501, Text Color: #FFFFFF)' => 'advisory', 'Severe (Background Color: #FF0000, Text Color: #FFFFFF)' => 'severe'),
+				'std'		=> 'advisory'
+			),
+			array(
+				'name'		=> 'Background Color',
+				'desc'		=> 'Example: #000000<br /> If left blank, the alert will default to the selected type\'s color scheme.',
+				'id'		=> $prefix.'bg_color',
+				'type'		=> 'text'
+			),
+			array(
+				'name'		=> 'Text Color',
+				'desc'		=> 'Example: #FFFFFF<br /> If left blank, the alert will default to the selected type\'s color scheme.',
+				'id'		=> $prefix.'text_color',
+				'type'		=> 'text'
+			)
+		);
+	}
+}
+

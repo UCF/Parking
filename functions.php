@@ -28,7 +28,7 @@ define('CB_DOMAIN', $theme_options['cb_domain']);
  * object.
  **/
 Config::$custom_post_types = array(
-	'InfoBox',
+	'InfoBox', 'Alert',
 );
 
 Config::$body_classes = array();
@@ -120,3 +120,78 @@ register_nav_menu('home-navigation', "Home Navigation");
 register_nav_menu('sidebar-nav-one', "Sidebar Nav One");
 register_nav_menu('sidebar-nav-two', "Sidebar Nav Two");
 register_nav_menu('below-fold-nav' , "Below the Fold Navigation");
+
+define('ALERT_COOKIE_NAME', 'parking_alerts');
+add_image_size('alert', 47, 49, True);
+function gen_alerts_html()
+{		
+		$alerts 		= get_posts(Array('post_type' => 'alert'));
+		$hidden_alerts	= Array();
+		$alerts_html 	= '';
+		
+		// Parse hidden alerts from cookie
+		if(isset($_COOKIE[ALERT_COOKIE_NAME])) {
+			$raw_hidden_alerts = explode(',', htmlspecialchars($_COOKIE[ALERT_COOKIE_NAME]));
+			foreach($raw_hidden_alerts as $alert_data) {
+				$alert = explode('-', $alert_data);
+				if(count($alert) == 2) {
+					$hidden_alerts[$alert[0]] = $alert[1]; // post_id -> post_time
+				}
+			}
+		}
+		
+		if(count($alerts) < 1) return;
+		
+		foreach($alerts as $alert) {
+			
+			$text       = get_post_meta($alert->ID, 'alert_text', True);
+			$link_text  = get_post_meta($alert->ID, 'alert_link_text', True);
+			$link_url   = get_post_meta($alert->ID, 'alert_link_url', True);
+			$type       = get_post_meta($alert->ID, 'alert_type', True);
+			$bg_color   = get_post_meta($alert->ID, 'alert_bg_color', True);
+			$text_color = get_post_meta($alert->ID, 'alert_text_color', True);
+			
+			$css_clss           = Array($type);
+			$li_inline_styles   = Array();
+			$span_inline_styles = Array();
+			
+			$link_html = ($link_text && $link_url) ? "<a href=\"$link_url\">$link_text</a>" : '';
+			
+			$thumbnail_id = get_post_thumbnail_id($alert->ID);
+			if($thumbnail_id != '') {
+				$thumbnail = wp_get_attachment_image_src($thumbnail_id, 'alert');
+				array_push($li_inline_styles, 'background-image: url('.$thumbnail[0].');');
+			}
+			
+			if($bg_color != '') {
+				if(substr($bg_color, 0, 1) != '#') {
+					$bg_color = '#'.$bg_color;
+				}
+				array_push($span_inline_styles, 'background-color: '.$bg_color.';');
+			}
+			if($text_color != '') {
+				if(substr($text_color, 0, 1) != '#') {
+					$text_color = '#'.$text_color;
+				}
+				array_push($span_inline_styles, 'color: '.$text_color.';');
+			}
+			
+			
+			// Even if alert is hidden, show it if it's updated
+			if(isset($hidden_alerts[$alert->ID]) && strtotime($alert->post_modified) <= $hidden_alerts[$alert->ID]) {
+				array_push($css_clss, 'hide');
+			}
+			
+		 	$alert_html = '<li style="'.implode(' ',$li_inline_styles).'" class="'.implode(' ',$css_clss).'" id="alert-'.$alert->ID.'-'.strtotime($alert->post_modified).'">
+								<span class="msg" style="'.implode(' ', $span_inline_styles).'">
+									'.$text.'
+									'.$link_html.'
+									<a class="close">Close</a>
+								</span>
+							</li>';
+			$alerts_html .= $alert_html."\n";
+		}
+		
+		return '<ul id="alerts" class="span-24">' . $alerts_html . '</ul>';
+}
+

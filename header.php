@@ -26,6 +26,8 @@
 			<div id="header">
 				<h1 class="light">Parking and <br>Transportation</h1>
 			</div>
+			<?=gen_alerts_html()?>
+			
 			<?php else: ?>
 			<div id="header">
 				<div class="span-11 page">
