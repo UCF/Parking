@@ -1,7 +1,5 @@
 <?php get_header();?>
 
-<div class="page-content" id="post-list">
-
 	<div class="span-15">
 		
 		<?php if (is_home() || is_front_page() ): ?>
@@ -43,7 +41,6 @@
 	<div class="clear"></div>
 	<?php get_template_part('templates/below-the-fold'); ?>
 	
-</div>
 
 
 <?php get_footer();?>
