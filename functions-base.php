@@ -317,12 +317,21 @@ function admin_help(){
 			?>
 			<h2>Available shortcodes:</h2>
 			<ul>
-				<?php foreach($shortcodes as $sc):?>
 				<li>
-					<h3><?=$sc['shortcode']?></h3>
-					<p><?=nl2br(str_replace(' *', '', htmlentities($sc['documentation'])))?></p>
+					<h3>Information Boxes</h3>
+					<p>Two shortcodes:</p>
+					<ul>
+						<li><code>[top <em>infobox slug</em> <em>infobox slug</em>]</code></li>
+						<li><code>[right <em>infobox slug</em> <em>infobox slug</em>]</code></li>
+					</ul>
+					
 				</li>
-				<?php endforeach;?>
+				<li>
+					<h3>Custom Menu</h3>
+					<p>
+						<code>[menu <em>page slug</em>, <em>page slug</em>]</code>
+					</p>
+				</li>
 			</ul>
 			<?php
 			break;

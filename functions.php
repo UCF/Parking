@@ -66,17 +66,6 @@ Config::$theme_settings = array(
 		'default'     => null,
 		'value'       => $theme_options['cb_domain'],
 	)),
-	new RadioField(array(
-		'name'        => 'Radio Example',
-		'id'          => THEME_OPTIONS_NAME.'[radio]',
-		'description' => 'Radio example, shows you some radio field stuff',
-		'default'     => 1,
-		'choices'     => array(
-			'Choice One' => 1,
-			'Choice Two' => 2,
-		),
-		'value'       => $theme_options['radio'],
-	)),
 );
 
 /**
