@@ -10,7 +10,7 @@ add_shortcode('empty-shortcode', 'sc_empty_shortcode');
 
 
 /**
- * InfoBoxes short codes
+ * Shortcodes: InfoBoxes [top] & [right]
  **/
 
 $all_infoboxes = array();
@@ -43,19 +43,51 @@ function get_infobox($atts){
 	else return false;
 }
 
-function sc_infobox_top($atts, $content = null) {
+function shortcode_infobox_top($atts, $content = null) {
 	global $short_codes;
 	$short_codes['top'] = get_infobox($atts);
 	return '';
 }
-add_shortcode('infobox-top', 'sc_infobox_top');
+add_shortcode('top', 'shortcode_infobox_top');
 
-function sc_infobox_right($atts, $content = null) {
+function shortcode_infobox_right($atts, $content = null) {
 	global $short_codes;
 	$short_codes['right'] = get_infobox($atts);
 	return '';
 }
-add_shortcode('infobox-right', 'sc_infobox_right');
+add_shortcode('right', 'shortcode_infobox_right');
+
+/**
+ * Shortcode: [menu]
+ **/
+function shortcode_menu($atts, $content = null) {
+	global $short_codes;
+	$short_codes['menu'] = false;
+	$pages = array();
+	$broken = array();
+	if(isset($atts['pages'])){
+		$given_pages = explode(' ', trim(str_replace(',','', $atts['pages'])));
+		if(count($given_pages) < 0) return '';
+		foreach($given_pages as $p){
+			$page = get_page_by_path($p);
+			if(!$page){
+				$broken[] = $p;
+			} else {
+				$pages[] = $page;
+			}
+		}
+	}
+	
+	$title = (isset($atts['title']) && !empty($atts['title'])) ? $atts['title'] : false;
+	
+	$short_codes['menu']['pages']  = $pages;
+	$short_codes['menu']['broken'] = $broken;
+	$short_codes['menu']['title']  = $title;
+	
+	return '';
+}
+add_shortcode('menu', 'shortcode_menu');
+
 
 
 /**
