@@ -23,15 +23,31 @@
 		<div id="blueprint-container" class="container">
 			
 			<?php if (is_home() || is_front_page() ): ?>
-			<div id="header">
+			<div id="header" class="home">
 				<h1 class="light">Parking and <br>Transportation</h1>
 			</div>
 			<?=gen_alerts_html()?>
 			
 			<?php else: ?>
 			<div id="header">
-				<div class="span-11 page">
-					<h1 class="light"><a href="<?=bloginfo('url')?>"><?=str_replace('UCF', '', get_bloginfo('name'))?></a></h1>
+				<?php 
+					// use parent slug
+					$slug = isset($post->post_parent) ?
+						basename(get_permalink($post->post_parent)) :
+						basename(get_permalink($post));
+				?>
+				<div class="span-11 <?=$slug?>">
+					<h1 class="light">
+						<a href="<?=bloginfo('url')?>">
+							<?php
+								// format and print page slug
+								echo in_array($slug, array("permits", "citations", "shuttles", "rules", "contact", "forms")) ?
+									ucwords($slug) :
+									'<span class="unknown-size">' . ucwords(str_replace('-', ' ', $slug)) . '</span>';
+							?>
+							<span><?=str_replace('UCF', '', get_bloginfo('name'))?></span>
+						</a>
+					</h1>
 				</div>
 				<div class="span-13 last">
 					

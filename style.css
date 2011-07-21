@@ -34,26 +34,30 @@ body, html { color:#313130; }
 #alerts > li.severe > .msg {background-color: #ff0000;}
 #alerts > li.severe > .msg > a {font-size: 95%;}
 
-#header { border-bottom:1px solid #e1e1e1; padding:15px 0 35px; }
-#header h1 { font-size:65px; letter-spacing:1px; line-height:61px; padding-left:122px; background:url('static/img/p.png') no-repeat left; color:#313130; }
-#header .page h1 { font-size:44px; padding-left:0; }
-#header .page h1 a { display:block; padding-left:122px; }
+#header { border-bottom:1px solid #e1e1e1; padding:10px 0 35px; }
+#header h1 { letter-spacing:1px; font-size:67px; line-height:70px; padding:0; margin:0;  background:url('static/img/head-park.png') no-repeat -4px 10px; color:#313130; height:130px;  }
+#header.home { padding-bottom:10px; }
+#header.home h1 { font-size:60px; line-height:61px; padding:0 0 20px 128px; background-position:-5px 0; }
+#header h1 a { display:block; padding-left:125px; padding-top:18px; }
+#header h1 a span { font-size:22px; line-height:40px; display:block; }
+#header h1 a .unknown-size { font-size:40px; line-height:42px; display:block; width:325px;  }
+#header .permits   h1 { background-image:url('static/img/head-perm.png'); }
+#header .citations h1 { background-image:url('static/img/head-cita.png'); }
+#header .shuttles  h1 { background-image:url('static/img/head-shut.png'); }
+#header .rules     h1 { background-image:url('static/img/head-rule.png'); }
+#header .contact   h1 { background-image:url('static/img/head-mail.png'); padding-left:8px; }
+#header .forms     h1 { background-image:url('static/img/head-form.png'); }
+
 #header ul { margin:0; padding:0; }
 #header ul li { display:block; float:left; margin:0; padding:0; }
 #header ul li a { display:block; width:85px; height:20px; padding-top:100px; font-size:16px; text-align:center; text-decoration:none; background-position:center top; background-repeat:no-repeat; }
 #header ul li a:hover { background-position: center -120px; }
-#header .permits   { background-image:url('static/img/nav-perm.png'); }
-#header .citations { background-image:url('static/img/nav-cita.png'); }
-#header .shuttles  { background-image:url('static/img/nav-shut.png'); }
-#header .rules     { background-image:url('static/img/nav-rule.png'); }
-#header .contact   { background-image:url('static/img/nav-mail.png'); }
-#header .forms     { background-image:url('static/img/nav-form.png'); }
-#header .permits   .permits   { background-position: center -120px; }
-#header .citations .citations { background-position: center -120px; }
-#header .shuttles  .shuttles  { background-position: center -120px; }
-#header .rules     .rules     { background-position: center -120px; }
-#header .contact   .contact   { background-position: center -120px; }
-#header .forms     .forms     { background-position: center -120px; }
+#header ul .permits   { background-image:url('static/img/nav-perm.png'); }
+#header ul .citations { background-image:url('static/img/nav-cita.png'); }
+#header ul .shuttles  { background-image:url('static/img/nav-shut.png'); }
+#header ul .rules     { background-image:url('static/img/nav-rule.png'); }
+#header ul .contact   { background-image:url('static/img/nav-mail.png'); }
+#header ul .forms     { background-image:url('static/img/nav-form.png'); }
 
 #home-menu { padding-bottom:40px; }
 #home-menu ul { margin:0; padding:0; }
