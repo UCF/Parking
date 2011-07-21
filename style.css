@@ -7,6 +7,12 @@ Version: v0.2.0
 
 body, html { color:#313130; }
 
+
+/* Ridiculous CSS3 button */
+.button { background:url('static/img/button-blue.png') no-repeat center; text-align:center; display:block; margin:24px auto 15px; text-decoration:none; padding:22px 0 18px; width:250px; color:white; font-size:20px; font-family:'helvetica', sans-serif; }
+.red { background-image:url('static/img/button-red.png'); }
+.button:hover { color:white; text-decoration:underline; }
+
 .page-content { padding:10px 0 35px; }
 .page-content p { font-weight:100; font-size:14px; }
 .page-content h2 { font-size:45px; margin:0; padding:0 0 12px; color:#333; font-weight: normal; font-style: normal; line-height:normal; font-family: 'Helvetica Neue Light', 'f4', 'Helvetica Light', 'HelveNeuLig', 'Helvetica-Light', sans-serif; }

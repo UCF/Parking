@@ -2,6 +2,16 @@
 disallow_direct_load('sidebar.php');
 global $short_codes;
 
+$slug = isset($post->post_parent) ?
+	basename(get_permalink($post->post_parent)) :
+	basename(get_permalink($post));
+
+if($slug=='citations'): ?>
+	<a href="https://secure.parking.ucf.edu/citations/" class="button red">Pay Citation</a>
+<?php elseif($slug=='permits'): ?>
+	<a href="https://secure.parking.ucf.edu/PermitOrder/" class="button">Purchase Permits</a>
+<?php endif;
+
 if(!function_exists('dynamic_sidebar') or !dynamic_sidebar('Sidebar')):
 
 	if($short_codes['menu']){
