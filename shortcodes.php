@@ -71,7 +71,17 @@ function shortcode_menu($atts, $content = null) {
 		foreach($given_pages as $p){
 			$page = get_page_by_path($p);
 			if(!$page){
-				$broken[] = $p;
+				$found = false;
+				// search through children
+				foreach(array("permits", "citations", "shuttles", "rules", "contact", "forms") as $parent){
+					$page = get_page_by_path($parent'/'.$p);
+					if($page){
+						$pages[] = $page;
+						$found=true;
+						break;
+					}
+				}
+				if(!$found) $broken[] = $p;
 			} else {
 				$pages[] = $page;
 			}
