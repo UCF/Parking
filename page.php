@@ -29,19 +29,29 @@
 <?php endif; ?>
 
 
-<div class="span-15 append-1" id="<?=$post->post_name?>">
-	
-	<div class="page-content">
+
+<?php if(isset($short_codes['no-sidebar'])): ?>
+
+	<div class="page-content clear">
 		<?=$content?>
 	</div>
-	
-</div>
 
-<div id="sidebar" class="span-8 last">
-	<?=get_sidebar();?>
-</div>
+<?php else: ?>
+
+	<div class="span-15 append-1" id="<?=$post->post_name?>">
 	
-<div class="clear"></div>
+		<div class="page-content">
+			<?=$content?>
+		</div>
 	
+	</div>
+
+	<div id="sidebar" class="span-8 last">
+		<?=get_sidebar();?>
+	</div>
+	
+	<div class="clear"></div>
+
+<?php endif; ?>
 <?php get_template_part('templates/below-the-fold'); ?>
 <?php get_footer();?>

@@ -22,6 +22,18 @@ body, html { color:#313130; }
 .page-content h3 { color:#333; margin:0; padding:4px 0 8px; font-weight: normal; font-style: normal; line-height:normal; font-family: 'Helvetica Neue Bold', 'f1', 'Helvetica Bold', 'HelveticaBold', 'Helvetica-Bold', sans-serif; }
 
 .disability { padding-left:115px; background:url('static/img/disability.png') no-repeat left 6px; min-height:110px; }
+.b { padding-left:115px; background:url('static/img/b.png') no-repeat left 6px; min-height:110px; }
+.c { padding-left:115px; background:url('static/img/c.png') no-repeat left 6px; min-height:110px; }
+.a { padding-left:115px; background:url('static/img/a.png') no-repeat left 6px; min-height:110px; }
+.d { padding-left:115px; background:url('static/img/d.png') no-repeat left 6px; min-height:110px; }
+.av { padding-left:115px; background:url('static/img/av.png') no-repeat left 6px; min-height:110px; }
+.al { padding-left:115px; background:url('static/img/al.png') no-repeat left 6px; min-height:110px; }
+.lc { padding-left:115px; background:url('static/img/lc.png') no-repeat left 6px; min-height:110px; }
+.ep { padding-left:115px; background:url('static/img/ep.png') no-repeat left 6px; min-height:110px; }
+.wp { padding-left:115px; background:url('static/img/wp.png') no-repeat left 6px; min-height:110px; }
+
+
+
 
 #infobox-top { color:#0160af; border-bottom:1px solid #e1e1e1; padding:5px 0 15px; font-size:30px; font-weight:100; margin-bottom:20px;  }
 #infobox-top p { padding:0; margin:0; line-height:1.2; }

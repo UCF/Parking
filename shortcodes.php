@@ -103,6 +103,15 @@ function shortcode_menu($atts, $content = null) {
 }
 add_shortcode('menu', 'shortcode_menu');
 
+/**
+ * Shortcode: [no-sidebar]
+ **/
+function shortcode_nosidebar($atts, $content= = null){
+	global $short_codes;
+	$short_codes['no-sidebar'] = true;
+	return '';
+}
+add_shortcode('no-sidebar', 'shortcode_nosidebar');
 
 
 /**

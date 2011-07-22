@@ -28,7 +28,7 @@ if(!function_exists('dynamic_sidebar') or !dynamic_sidebar('Sidebar')):
 			printf('<!-- %s is not a page -->%s', $b, "\n");
 		}
 		
-		echo "<ul>\n";
+		echo '<ul class="light">'."\n";
 		foreach($pages as $page){
 			printf('<li><a href="%s">%s</a></li>%s', get_permalink($page), $page->post_title, "\n");
 		}
