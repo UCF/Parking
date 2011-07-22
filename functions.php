@@ -150,6 +150,7 @@ function gen_alerts_html()
 			$content  = apply_filters('the_content', $content);
 			$content  = str_replace(']]>', ']]>', $content);
 			$type     = get_post_meta($alert->ID, 'alert_type', True);
+			$type     = empty($type) ? 'info' : $type;
 			
 			$css_clss = array($type);
 			
