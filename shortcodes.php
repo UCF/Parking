@@ -106,7 +106,7 @@ add_shortcode('menu', 'shortcode_menu');
 /**
  * Shortcode: [no-sidebar]
  **/
-function shortcode_nosidebar($atts, $content= = null){
+function shortcode_nosidebar($atts, $content = null){
 	global $short_codes;
 	$short_codes['no-sidebar'] = true;
 	return '';

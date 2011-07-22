@@ -31,7 +31,7 @@ body, html { color:#313130; }
 .lc { padding-left:115px; background:url('static/img/lc.png') no-repeat left 6px; min-height:110px; }
 .ep { padding-left:115px; background:url('static/img/ep.png') no-repeat left 6px; min-height:110px; }
 .wp { padding-left:115px; background:url('static/img/wp.png') no-repeat left 6px; min-height:110px; }
-
+.permits h2 { font-size:45px; margin:0; padding:5px 0 10px; }
 
 
 
