@@ -9,6 +9,8 @@
 	$content = str_replace(']]>', ']]>', $content);
 	// remove linebreaks that followed shortcodes
 	$content = preg_replace('/^(<br \/>\s+)+/', '', $content);
+	$content = preg_replace('/^\s*<\/p>/', '', $content);
+	$content = preg_replace('/^\s*<p><\/p>/', '', $content);
 	
 	// shortcode, info-box top
 	global $short_codes;

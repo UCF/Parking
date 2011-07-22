@@ -24,9 +24,15 @@
 			
 			<?php if (is_home() || is_front_page() ): ?>
 			<div id="header" class="home">
-				<h1 class="light">Parking and <br>Transportation</h1>
+				<div class="span-14">
+					<h1 class="light">Parking and <br>Transportation</h1>
+				</div>
+				<div class="span-10 last">
+					<?=gen_alerts_html()?>
+				</div>
+				<div class="clear"></div>
 			</div>
-			<?=gen_alerts_html()?>
+			
 			
 			<?php else: ?>
 			<div id="header">
