@@ -40,7 +40,7 @@ function get_infobox($atts){
 		}
 	}
 	if(count($boxes) > 0) return $boxes[array_rand($boxes)];
-	else return false;
+	else return $all_infoboxes[array_rand($all_infoboxes)]; // pick one from all at random
 }
 
 function shortcode_infobox_top($atts, $content = null) {
@@ -50,9 +50,13 @@ function shortcode_infobox_top($atts, $content = null) {
 }
 add_shortcode('top', 'shortcode_infobox_top');
 
-function shortcode_infobox_right($atts, $content = null) {
+function shortcode_infobox_right($atts, $content = '') {
 	global $short_codes;
 	$short_codes['right'] = get_infobox($atts);
+	$content = trim($content);
+	if(!empty($content)){
+		$short_codes['sidebar-content'] = $content;
+	}
 	return '';
 }
 add_shortcode('right', 'shortcode_infobox_right');

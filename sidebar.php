@@ -12,6 +12,9 @@ if($slug=='citations'): ?>
 	<a href="https://secure.parking.ucf.edu/PermitOrder/" class="button">Purchase Permits</a>
 <?php endif;
 
+
+if(isset($short_codes['sidebar-content'])) printf('<div id="sidebar-content">%s</div>', $short_codes['sidebar-content']);
+
 if(!function_exists('dynamic_sidebar') or !dynamic_sidebar('Sidebar')):
 
 	if($short_codes['menu']){

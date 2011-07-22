@@ -34,7 +34,7 @@
 		<?php endif; ?>
 	</div>
 	
-	<div class="span-9 last">
+	<div class="span-9 last home">
 		<?=get_sidebar();?>
 	</div>
 	
