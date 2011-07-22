@@ -9,17 +9,20 @@ body, html { color:#313130; }
 
 
 /* Ridiculous CSS3 button */
-.button { background:url('static/img/button-blue.png') no-repeat center; text-align:center; display:block; margin:24px auto 15px; text-decoration:none; padding:22px 0 18px; width:250px; color:white; font-size:20px; font-family:'helvetica', sans-serif; }
+.button { background:url('static/img/button-blue.png') no-repeat center; text-align:center; display:block; margin:0 auto 15px; text-decoration:none; padding:22px 0 18px; width:250px; color:white; font-size:20px; font-family:'helvetica', sans-serif; }
 .red { background-image:url('static/img/button-red.png'); }
 .button:hover { color:white; text-decoration:underline; }
 
 .page-content { padding:10px 0 35px; }
 .page-content p { font-weight:100; font-size:14px; }
-.page-content h2 { font-size:45px; margin:0; padding:0 0 12px; color:#333; font-weight: normal; font-style: normal; line-height:normal; font-family: 'Helvetica Neue Light', 'f4', 'Helvetica Light', 'HelveNeuLig', 'Helvetica-Light', sans-serif; }
+.page-content a { color:#0160af; text-decoration:none; }
+.page-content a:hover { text-decoration:underline; }
+.page-title { padding-top:10px; }
+.page-title h2 { font-size:45px; margin:0; padding:0 0 12px; color:#333; font-weight: normal; font-style: normal; line-height:normal; font-family: 'Helvetica Neue Light', 'f4', 'Helvetica Light', 'HelveNeuLig', 'Helvetica-Light', sans-serif; }
 .page-content h3 { color:#333; margin:0; padding:4px 0 8px; font-weight: normal; font-style: normal; line-height:normal; font-family: 'Helvetica Neue Bold', 'f1', 'Helvetica Bold', 'HelveticaBold', 'Helvetica-Bold', sans-serif; }
 
 #infobox-top { color:#0160af; border-bottom:1px solid #e1e1e1; padding:5px 0 15px; font-size:30px; font-weight:100; margin-bottom:10px;  }
-#infobox-top p { padding:0; margin:0; }
+#infobox-top p { padding:0; margin:0; line-height:1.2; }
 #infobox-top span { font-size:19px; }
 #infobox-top strong { font-weight:bold; }
 #infobox-top h2 { color:#0160af; font-size:30px; margin:0; padding:0; }
@@ -42,7 +45,7 @@ body, html { color:#313130; }
 #alerts > li.severe > .msg > a {font-size: 95%;}
 
 #header { border-bottom:1px solid #e1e1e1; padding:10px 0 35px; }
-#header h1 { letter-spacing:1px; font-size:67px; line-height:70px; padding:0; margin:0;  background:url('static/img/head-park.png') no-repeat -4px 10px; color:#313130; height:130px;  }
+#header h1 { letter-spacing:1px; font-size:44px; line-height:52px; padding:0; margin:0;  background:url('static/img/head-park.png') no-repeat -4px 10px; color:#313130; height:130px;  }
 #header.home { padding-bottom:10px; }
 #header.home h1 { font-size:60px; line-height:61px; padding:0 0 20px 128px; background-position:-5px 0; }
 #header h1 a { display:block; padding-left:125px; padding-top:18px; }
@@ -85,11 +88,11 @@ body, html { color:#313130; }
 .side-nav ul li a { color:#0161b2; font-size:45px; text-decoration:none; font-weight:200;}
 .side-nav ul li a:hover { text-decoration:underline; }
 .ie .side-nav ul li a { font-size:40px;}
-#sidebar { padding-top:40px; }
+#sidebar { padding-top:15px; }
 #sidebar .side-nav { margin-bottom:45px; }
 #sidebar .side-nav ul li { padding-bottom:5px; }
 #sidebar .side-nav ul li a { font-size:27px;  }
-.page-menu { padding-bottom:100px; }
+.page-menu { padding-bottom:20px;  }
 
 #below-fold { border-top:1px solid #e1e1e1; }
 #below-fold h2 { font-size:17px; color:#9c9a9a; margin:20px 0 8px; }

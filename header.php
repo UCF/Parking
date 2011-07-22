@@ -41,11 +41,14 @@
 						<a href="<?=bloginfo('url')?>">
 							<?php
 								// format and print page slug
-								echo in_array($slug, array("permits", "citations", "shuttles", "rules", "contact", "forms")) ?
-									ucwords($slug) :
-									'<span class="unknown-size">' . ucwords(str_replace('-', ' ', $slug)) . '</span>';
-							?>
-							<span><?=str_replace('UCF', '', get_bloginfo('name'))?></span>
+								global $parents;
+								if(in_array($slug, $parents))
+									printf('%s<span>%s', 
+										ucwords($slug), 
+										str_replace('UCF', '', get_bloginfo('name')));
+								else
+								 	print 'Parking and <br>Transportation';
+							?>	
 						</a>
 					</h1>
 				</div>

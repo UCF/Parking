@@ -1,6 +1,6 @@
 <?php
 disallow_direct_load('sidebar.php');
-global $short_codes;
+global $short_codes, $parents;
 
 $slug = isset($post->post_parent) ?
 	basename(get_permalink($post->post_parent)) :

@@ -73,8 +73,9 @@ function shortcode_menu($atts, $content = null) {
 			if(!$page){
 				$found = false;
 				// search through children
-				foreach(array("permits", "citations", "shuttles", "rules", "contact", "forms") as $parent){
-					$page = get_page_by_path($parent'/'.$p);
+				global $parents;
+				foreach($parents as $parent){
+					$page = get_page_by_path($parent.'/'.$p);
 					if($page){
 						$pages[] = $page;
 						$found=true;

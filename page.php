@@ -18,10 +18,20 @@
 
 ?>
 
+
+<?php
+	global $parents;
+	if(!in_array(basename(get_permalink($post)), $parents)):
+?>
+<div class="page-title">
+	<h2><?php the_title();?></h2>
+</div>
+<?php endif; ?>
+
+
 <div class="span-15 append-1" id="<?=$post->post_name?>">
 	
 	<div class="page-content">
-		<h2><?php the_title();?></h2>
 		<?=$content?>
 	</div>
 	
