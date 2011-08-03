@@ -1,39 +1,58 @@
+<?php
+	$options = get_option(THEME_OPTIONS_NAME);
+	$domain  = $options['search_domain'];
+	$limit   = (int)$options['search_per_page'];
+	$start   = (is_numeric($_GET['start'])) ? (int)$_GET['start'] : 0;
+	$results = get_search_results($_GET['s'], $start, $limit, $domain);
+?>
 <?php get_header();?>
 	<div class="page-content" id="search-results">
-		<div id="left" class="span-6 append-1">
-			<h2>Search Results for: <?=esc_html(stripslashes($_GET['s']))?></h2>
+		<div class="results span-16 append-2">
+			<h2>Search results</h2>
+			<?php get_search_form()?>
 			
-			<div id="widgets">
-				<ul>
-				<?php if (get_post_meta($post->ID, '1st-subsidiary-aside', True)):?>
-				<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('1st-subsidiary-aside') ) : ?>
-				<?php endif; ?>
-				<?php else:?>
-				<?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar('secondary-aside') ) : ?>
-				<?php endif; ?>
-				<?php endif;?>
-				</ul>
-			</div>
+			<?php if(count($results['items'])):?>
+				
+			<ul class="result-list">
+				<?php foreach($results['items'] as $result):?>
+				<li class="item">
+					<h3>
+						<a class="sans ignore-external title <?=mimetype_to_application(($result['mime']) ? $result['mime'] : 'text/html')?>" href="<?=$result['url']?>">
+							<?=$result['title']?>
+						</a>
+					</h3>
+					<a href="<?=$result['url']?>" class="ignore-external url sans"><?=$result['url']?></a>
+					<div class="snippet sans">
+						<?=str_replace('<br>', '', $result['snippet'])?>
+					</div>
+				</li>
+				<?php endforeach;?>
+			</ul>
+			
+			<?php if($start + $limit < $results['number']):?>
+			<a class="button more" href="./?s=<?=$_GET['s']?>&amp;start=<?=$start + $limit?>">More Results</a>
+			<?php endif;?>
+			
+			<?php else:?>
+				
+			<p>No results found for "<?=htmlentities($_GET['s'])?>".</p>
+			
+			<?php endif;?>
 		</div>
-		<div id="right" class="span-17 last">
+		
+		
+		<div id="sidebar" class="span-6 last">
 			<?php
-				if (have_posts()) {
-					// action hook creating the search loop
-					thematic_searchloop();
-				} else {
-					thematic_abovepost();?>
-					<div id="post-0" class="post noresults">
-						<h3><?php _e('Nothing Found', 'thematic') ?></h3>
-						<p><?php _e('Sorry, but nothing matched your search criteria. Please try again with some different keywords.', 'thematic') ?></p>
-						
-						<form id="noresults-searchform" method="get" action="<?php bloginfo('url') ?>/">
-							<div>
-								<input id="noresults-s" name="s" type="text" value="<?php echo esc_html(stripslashes($_GET['s'])) ?>" size="40" />
-								<input id="noresults-searchsubmit" name="searchsubmit" type="submit" value="<?php _e('Find', 'thematic') ?>" />
-							</div>
-						</form>
-					</div><!-- #post -->
-				<?php thematic_belowpost();
-				}?>
-		</div><!-- #container -->
+				// Remove search widget if included, redundant on this page
+				ob_start(); get_search_form(); $search  = ob_get_clean();
+				ob_start(); get_sidebar()    ; $sidebar = ob_get_clean();
+				$sidebar = str_replace($search, '', $sidebar);
+			?>
+			<?=$sidebar?>
+		</div>
+		
+		<div id="below-the-fold" class="clear">
+			<?php get_template_part('templates/below-the-fold'); ?>
+		</div>
+	</div>
 <?php get_footer();?>

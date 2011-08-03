@@ -227,6 +227,24 @@ class CheckboxField extends ChoicesField{
 }
 
 
+function cleanup($content){
+	#Remove incomplete tags at start and end
+	$content = preg_replace('/^<\/p>[\s]*/i', '', $content);
+	$content = preg_replace('/[\s]*<p>$/i', '', $content);
+	$content = preg_replace('/^<br \/>/i', '', $content);
+	$content = preg_replace('/<br \/>$/i', '', $content);
+
+	#Remove paragraph and linebreak tags wrapped around shortcodes
+	$content = preg_replace('/(<p>|<br \/>)\[/i', '[', $content);
+	$content = preg_replace('/\](<\/p>|<br \/>)/i', ']', $content);
+
+	#Remove empty paragraphs
+	$content = preg_replace('/<p><\/p>/i', '', $content);
+
+	return $content;
+}
+
+
 /**
  * Given a mimetype, will attempt to return a string representing the
  * application it is associated with.
@@ -235,6 +253,9 @@ function mimetype_to_application($mimetype){
 	switch($mimetype){
 		default:
 			$type = 'document';
+			break;
+		case 'text/html':
+			$type = "html";
 			break;
 		case 'application/zip':
 			$type = "zip";
@@ -260,6 +281,97 @@ function mimetype_to_application($mimetype){
 
 
 /**
+ * Fetches objects defined by arguments passed, outputs the objects according
+ * to the objectsToHTML method located on the object.  Used by the auto
+ * generated shortcodes enabled on custom post types. See also:
+ * 
+ *   CustomPostType::objectsToHTML
+ *   CustomPostType::toHTML
+ *
+ **/
+function sc_object_list($attr, $default_content=null){
+	if (!is_array($attr)){return '';}
+	
+	# set defaults and combine with passed arguments
+	$defaults = array(
+		'type'  => null,
+		'limit' => -1,
+		'join'  => 'or',
+	);
+	$options = array_merge($defaults, $attr);
+	
+	# verify options
+	if ($options['type'] == null){
+		return '<p class="error">No type defined for object list.</p>';
+	}
+	if (!is_numeric($options['limit'])){
+		return '<p class="error">Invalid limit argument, must be a number.</p>';
+	}
+	if (!in_array(strtoupper($options['join']), array('AND', 'OR'))){
+		return '<p class="error">Invalid join type, must be one of "and" or "or".</p>';
+	}
+	if (null == ($class = get_custom_post_type($options['type']))){
+		return '<p class="error">Invalid post type.</p>';
+	}
+	
+	# get taxonomies and translation
+	$translate  = array(
+		'tags'       => 'post_tag',
+		'categories' => 'category',
+	);
+	$taxonomies = array_diff(array_keys($attr), array_keys($defaults));
+	
+	# assemble taxonomy query
+	$tax_queries             = array();
+	$tax_queries['relation'] = strtoupper($options['join']);
+	
+	foreach($taxonomies as $tax){
+		$terms = $options[$tax];
+		$terms = trim(preg_replace('/\s+/', ' ', $terms));
+		$terms = explode(' ', $terms);
+		
+		if (array_key_exists($tax, $translate)){
+			$tax = $translate[$tax];
+		}
+		
+		$tax_queries[] = array(
+			'taxonomy' => $tax,
+			'field'    => 'slug',
+			'terms'    => $terms,
+		);
+	}
+	
+	# perform query
+	$query_array = array(
+		'tax_query'      => $tax_queries,
+		'post_status'    => 'publish',
+		'post_type'      => $options['type'],
+		'posts_per_page' => $options['limit'],
+		'orderby'        => 'menu_order title',
+		'order'          => 'ASC',
+	);
+	$query = new WP_Query($query_array);
+	$class = new $class;
+	
+	
+	global $post;
+	$objects = array();
+	while($query->have_posts()){
+		$query->the_post();
+		$objects[] = $post;
+	}
+	wp_reset_postdata();
+	
+	if (count($objects)){
+		$html = $class->objectsToHTML($objects);
+	}else{
+		$html = $default_content;
+	}
+	return $html;
+}
+
+
+/**
  * Creates an array 
  **/
 function shortcodes(){
@@ -277,15 +389,22 @@ function shortcodes(){
 		$scode  = $code->options('name').'-list';
 		$plural = $code->options('plural_name');
 		$doc = <<<DOC
- Outputs a list of {$plural} filtered by tag
- or category.
+ Outputs a list of {$plural} filtered by arbitrary taxonomies, for example a tag
+or category.  A default output for when no objects matching the criteria are
+found.
 
  Example:
- # Output a maximum of 5 items tagged foo or bar.
- [{$scode} tags="foo bar" limit="5"]
+ # Output a maximum of 5 items tagged foo or bar, with a default output.
+ [{$scode} tags="foo bar" limit="5"]No {$plural} were found.[/{$scode}]
 
  # Output all objects categorized as foo
  [{$scode} categories="foo"]
+
+ # Output all objects matching the terms in the custom taxonomy named foo
+ [{$scode} foo="term list example"]
+
+ # Outputs all objects found categorized as staff and tagged as small.
+ [{$scode} limit="5" join="and" categories="staff" tags="small"]
 DOC;
 		$codes[] = array(
 			'documentation' => $doc,
@@ -405,6 +524,72 @@ function __init__(){
 	foreach(Config::$scripts as $script){Config::add_script($script);}
 }
 add_action('after_setup_theme', '__init__');
+
+
+/**
+ * Uses the google search appliance to search the current site or the site 
+ * defined by the argument $domain.
+ **/
+function get_search_results(
+		$query,
+		$start=null,
+		$per_page=null,
+		$domain=null,
+		$search_url="http://google.cc.ucf.edu/search"
+	){
+	
+	$start     = ($start) ? $start : 0;
+	$per_page  = ($per_page) ? $per_page : 10;
+	$domain    = ($domain) ? $domain : $_SERVER['SERVER_NAME'];
+	$results   = array(
+		'number' => 0,
+		'items'  => array(),
+	);
+	$query     = trim($query);
+	$per_page  = (int)$per_page;
+	$start     = (int)$start;
+	$query     = urlencode($query);
+	$arguments = array(
+		'num'        => $per_page,
+		'start'      => $start,
+		'ie'         => 'UTF-8',
+		'oe'         => 'UTF-8',
+		'client'     => 'default_frontend',
+		'output'     => 'xml',
+		'sitesearch' => $domain,
+		'q'          => $query,
+	);
+	
+	if (strlen($query) > 0){
+		$query_string = http_build_query($arguments);
+		$url          = $search_url.'?'.$query_string;
+		$response     = file_get_contents($url);
+		
+		if ($response){
+			$xml   = simplexml_load_string($response);
+			$items = $xml->RES->R;
+			$total = $xml->RES->M;
+			
+			$temp = array();
+			
+			if ($total){
+				foreach($items as $result){
+					$item            = array();
+					$item['url']     = $result->U;
+					$item['title']   = $result->T;
+					$item['rank']    = $result->RK;
+					$item['snippet'] = $result->S;
+					$item['mime']    = $result['MIME'];
+					$temp[]          = $item;
+				}
+				$results['items'] = $temp;
+			}
+			$results['number'] = $total;
+		}
+	}
+	
+	return $results;
+}
 
 
 /**
@@ -580,10 +765,11 @@ function indent($html, $n){
 /**
  * Footer content
  **/
-function footer_(){
+function footer_($tabs=2){
 	ob_start();
 	wp_footer();
-	return ob_get_clean();
+	$html = ob_get_clean();
+	return indent($html, $tabs);
 }
 
 
@@ -661,10 +847,6 @@ function header_title(){
 		$content = __('Category Archives:');
 		$content .= ' ' . single_cat_title("", false);;
 	}
-	elseif ( is_tag() ) { 
-		$content = __('Tag Archives:');
-		$content .= ' ' . thematic_tag_query();
-	}
 	elseif ( is_404() ) { 
 		$content = __('Not Found'); 
 	}
@@ -696,10 +878,7 @@ function header_title(){
 			'site_name' => $site_name,
 		);
 	}
-
-	// Filters should return an array
-	$elements = apply_filters('thematic_doctitle', $elements);
-
+	
 	// But if they don't, it won't try to implode
 	if(is_array($elements)) {
 	$doctitle = implode(' ', $elements);
