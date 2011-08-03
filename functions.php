@@ -108,6 +108,7 @@ Config::$scripts = array(
 	THEME_JS_URL.'/jquery-browser.js',
 	THEME_JS_URL.'/jquery-uniform.js',
 	THEME_JS_URL.'/jquery-cookie.js',
+	array('name' => 'base-script',  'src' => THEME_JS_URL.'/webcom-base.js',),
 	array('name' => 'theme-script', 'src' => THEME_JS_URL.'/script.js',),
 );
 
