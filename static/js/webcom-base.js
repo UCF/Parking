@@ -4,9 +4,10 @@
 \******************************************************************************/
 var Webcom = {};
 
+if(!window.console ) { window.console = { log: function() { return; } }; }
+
 // for jslint validation
 /*global window, document, Image, google, $, jQuery */
-
 
 Webcom.analytics = function($){
 	if ((typeof GA_ACCOUNT !== 'undefined') && Boolean(GA_ACCOUNT)){
@@ -33,7 +34,7 @@ Webcom.handleExternalLinks = function($){
 		var url  = $(this).attr('href');
 		var host = window.location.host.toLowerCase();
 		
-		if (url.search(host) < 0 && url.search('http') > -1){
+		if (url && url.search(host) < 0 && url.search('http') > -1){
 			$(this).attr('target', '_blank');
 			$(this).addClass('external');
 		}
