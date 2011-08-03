@@ -62,75 +62,21 @@ var chartbeat = function($){
 	}
 };
 
-(function($){
+jQuery(document).ready(function($) {
+	
 	chartbeat($);
 	analytics($);
 	handleExternalLinks($);
 	
+	// Hide alert when close button is clicked and append to cookie
+	$('#alerts a.close').click(function(e) {
+		e.preventDefault();
+		var li = $(this).parents('li');
+		var hide = li.attr('id').replace('alert-', '');
+		var old  = $.cookie('parking_alerts') ? $.cookie('parking_alerts') : '';
+		var val     = old + hide + ',';
+		$.cookie('parking_alerts',  val);
+		li.hide();
+	});
 	
-	
-	/* 
-		Hide alert when close button is clicked 
-	*/
-	(function() {
-		var ALERT_COOKIE_NAME = 'ucf_today_alerts';
-		
-		function extract_post_meta(data) {
-			var post = [];
-			post['id'] 		= data.substr(0, data.indexOf('-'));
-			post['time']	= data.substr(data.indexOf('-') + 1, data.length);
-			return (post['id'] == undefined || post['time'] == undefined) ? null : post;
-		}
-		function compact_post_meta(id, time) {return id + '-' + time;}
-		
-		
-		$('#alerts > li')
-			.each(function(index, li){
-				$(li).find('a.close')
-					.click(function(_event) {
-						_event.preventDefault();
-						var li 				= $('#alerts > li:eq(' + index + ')'),
-							hidden_posts 	= $.cookie(ALERT_COOKIE_NAME);
-							
-						var cur_post = extract_post_meta(li.attr('id').replace('alert-', ''));
-						
-						if(cur_post != null) {	
-							if(hidden_posts != null) { // the cookie is not set
-								if(hidden_posts.indexOf(cur_post['id']) != -1) { // first time this post is being hidden? 
-									hidden_posts = hidden_posts.split(',');
-								
-									for(var _index in hidden_posts) {
-										var post = extract_post_meta(hidden_posts[_index]);
-										if(post != null && cur_post['id'] == post['id']) {
-											if(cur_post['time'] != post['id']) {
-												/*	
-													This alert is being hidden after it was updated in Wordpress.
-													Update the cookie with the new post_modified time.
-												*/ 
-												$.cookie(ALERT_COOKIE_NAME, 
-													$.cookie(ALERT_COOKIE_NAME)
-														.replace(compact_post_meta(post['id'],post['time']), 
-															compact_post_meta(cur_post['id'], cur_post['time'])),
-																{ path: '/', domain: '.ucf.edu'});
-											}
-											break;
-										}
-									}
-								} else {
-									$.cookie(ALERT_COOKIE_NAME, 
-												$.cookie(ALERT_COOKIE_NAME) + ',' + compact_post_meta(cur_post['id'], cur_post['time']),
-													{ path: '/', domain: '.ucf.edu'});
-								}
-							} else {
-								$.cookie(ALERT_COOKIE_NAME, 
-											compact_post_meta(cur_post['id'], cur_post['time']),
-												{ path: '/', domain: '.ucf.edu'});
-							}
-						}
-						li.hide();
-					});
-			});
-	})();
-	
-	
-})(jQuery);
+});

@@ -123,7 +123,6 @@ register_nav_menu('sidebar-nav-two', "Sidebar Nav Two");
 register_nav_menu('below-fold-nav' , "Below the Fold Navigation");
 global $parents;
 $parents = array("permits", "citations", "shuttles", "rules", "contact", "forms");
-define('ALERT_COOKIE_NAME', 'parking_alerts');
 add_image_size('alert', 47, 49, True);
 function gen_alerts_html()
 {		
@@ -132,8 +131,8 @@ function gen_alerts_html()
 		$alerts_html 	= '';
 		
 		// Parse hidden alerts from cookie
-		if(isset($_COOKIE[ALERT_COOKIE_NAME])) {
-			$raw_hidden_alerts = explode(',', htmlspecialchars($_COOKIE[ALERT_COOKIE_NAME]));
+		if(isset($_COOKIE['parking_alerts'])) {
+			$raw_hidden_alerts = explode(',', htmlspecialchars($_COOKIE['parking_alerts']));
 			foreach($raw_hidden_alerts as $alert_data) {
 				$alert = explode('-', $alert_data);
 				if(count($alert) == 2) {
@@ -152,14 +151,13 @@ function gen_alerts_html()
 			$type     = get_post_meta($alert->ID, 'alert_type', True);
 			$type     = empty($type) ? 'info' : $type;
 			
-			$css_clss = array($type);
-			
-			// Even if alert is hidden, show it if it's updated
+			// Skip alerts hidden in the cookie (unless they've been modified since hidden)
 			if(isset($hidden_alerts[$alert->ID]) && strtotime($alert->post_modified) <= $hidden_alerts[$alert->ID]) {
-				array_push($css_clss, 'hide');
+				continue;
 			}
 			
-			$alert_html = '<li class="'.implode(' ',$css_clss).'" id="alert-'.$alert->ID.'-'.strtotime($alert->post_modified).'">
+			$id = sprintf('alert-%s-%s', $alert->ID, strtotime($alert->post_modified));
+			$alert_html = '<li class="'.$type.'" id="'.$id.'">
 								<div class="msg">
 									'.$content.'
 									<a class="close">Close</a>
