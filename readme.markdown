@@ -4,12 +4,18 @@ Based on the UCF Base WordPress Theme
 
 ## Notes
 
-* None
+Menu Config:
+
+* Home Navigation > Main Menu
+* Sidebar Nav One > Find Out More
+* Below the Fold Navigation > More Resources
+* Header Menu > Main Menu
+* Footer Menu > Main Menu
 
 ## Custom Post Types
 
-* None
+* InfoBoxes
 
 ## Short Codes
 
-* None
+* Should be documented in admin
