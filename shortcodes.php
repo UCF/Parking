@@ -98,6 +98,27 @@ function shortcode_menu($atts, $content = null) {
 	$short_codes['menu']['pages']  = $pages;
 	$short_codes['menu']['broken'] = $broken;
 	$short_codes['menu']['title']  = $title;
+
+	$animation = ($attr['animation']) ? $attr['animation'] : 'slide';
+	$height    = ($attr['height']) ? $attr['height'] : '100px';
+	$width     = ($attr['width']) ? $attr['width'] : '100%';
+	$tran_len  = ($attr['transition']) ? $attr['transition'] : 1000;
+	$cycle_len = ($attr['cycle']) ? $attr['cycle'] : 5000;
+	
+	ob_start();
+	?>
+	<div 
+		class="slideshow <?=$animation?>"
+		data-tranlen="<?=$tran_len?>"
+		data-cyclelen="<?=$cycle_len?>"
+		style="height: <?=$height?>; width: <?=$width?>;"
+	>
+		<?php foreach($items as $item):?>
+		<?=$item?>
+		<?php endforeach;?>
+	</div>
+	<?php
+	$html = ob_get_clean();
 	
 	return '';
 }

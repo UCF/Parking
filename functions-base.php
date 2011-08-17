@@ -522,6 +522,8 @@ function __init__(){
 	));
 	foreach(Config::$styles as $style){Config::add_css($style);}
 	foreach(Config::$scripts as $script){Config::add_script($script);}
+	
+	wp_deregister_script('l10n');
 }
 add_action('after_setup_theme', '__init__');
 
@@ -702,9 +704,7 @@ function get_menu($name, $classes=null, $id=null, $callback=null){
 		<?php
 		$menu = ob_get_clean();
 	}else{
-		$menu = (is_array($callback)) ?
-			call_user_func_array($callback, array($items)) :
-			call_user_func($callback, array($items));
+		$menu = call_user_func($callback, array($items));
 	}
 	
 	return $menu;
@@ -778,10 +778,11 @@ function footer_($tabs=2){
  **/
 function header_($tabs=2){
 	ob_start();
-	wp_head();
-	print header_title()."\n";
 	print header_meta()."\n";
+	remove_action('wp_head', 'rsd_link');
+	wp_head();
 	print header_links()."\n";
+	print header_title()."\n";
 	$html = ob_get_clean();
 	$html = indent($html, $tabs);
 	return $html;
