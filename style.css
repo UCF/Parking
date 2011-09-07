@@ -33,6 +33,9 @@ body, html { color:#313130; }
 .wp { padding-left:115px; background:url('static/img/wp.png') no-repeat left 6px; min-height:110px; }
 .permits h2 { font-size:45px; margin:0; padding:5px 0 10px; }
 
+
+.ie7 ul.light { font-family:helvetica; background:white; font-weight:normal; }
+
 #infobox-top { color:#0160af; border-bottom:1px solid #e1e1e1; padding:5px 0 15px; font-size:30px; font-weight:100; margin-bottom:20px;  }
 #infobox-top p { padding:0; margin:0; line-height:1.2; }
 #infobox-top span { font-size:19px; }
@@ -84,6 +87,7 @@ body, html { color:#313130; }
 #home-menu ul { margin:0; padding:0; }
 #home-menu ul li {display:block; float:left;  margin:0; padding:0; }
 #home-menu ul li a { display:block; font-size:35px; width:170px; padding-top:200px; height:40px; background-position:center -300px; text-decoration:none; font-weight:bold; color:black; text-align:center; }
+.ie7 #home-menu ul li a { font-weight:normal; }
 #home-menu ul li a:hover { background-position: center 19px; }
 #home-permits   { background:url('static/img/icon-perm.png') top center no-repeat; }
 #home-citations { background:url('static/img/icon-cita.png') top center no-repeat; }
