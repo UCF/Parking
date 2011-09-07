@@ -18,9 +18,10 @@ if(isset($short_codes['sidebar-content'])) printf('<div id="sidebar-content">%s<
 if(!function_exists('dynamic_sidebar') or !dynamic_sidebar('Sidebar')):
 
 	if($short_codes['menu']){
-		$pages  = $short_codes['menu']['pages'];
-		$broken = $short_codes['menu']['broken'];
-		$title  = $short_codes['menu']['title'];
+		$pages   = $short_codes['menu']['pages'];
+		$broken  = $short_codes['menu']['broken'];
+		$title   = $short_codes['menu']['title'];
+		$anchors = $short_codes['menu']['anchors'];
 		
 		echo '<div class="side-nav page-menu">';
 		if($title) printf('<h2>%s</h2>', $title);
@@ -30,7 +31,11 @@ if(!function_exists('dynamic_sidebar') or !dynamic_sidebar('Sidebar')):
 		
 		echo '<ul class="light">'."\n";
 		foreach($pages as $page){
-			printf('<li><a href="%s">%s</a></li>%s', get_permalink($page), $page->post_title, "\n");
+			$anchor = '';
+			if(isset($anchors[$page->ID])){
+				$anchor = '#' . $anchors[$page->ID];
+			}
+			printf('<li><a href="%s%s">%s</a></li>%s', get_permalink($page), $anchor, $page->post_title, "\n");
 		}
 		echo "</ul></div>\n";
 		
