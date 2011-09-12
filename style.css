@@ -14,7 +14,7 @@ body, html { color:#313130; }
 .park-button:hover { color:white; text-decoration:underline; }
 
 .page-content { padding:10px 0 35px; }
-.page-content p { font-weight:100; font-size:14px; line-height:26px; }
+.page-content p { font-weight:100; font-size:14px; line-height:22px; margin: 0 0 1.5em 0; }
 .page-content a { color:#0160af; text-decoration:none; }
 .page-content a:hover { text-decoration:underline; }
 .page-title { padding-top:10px; }
