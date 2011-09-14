@@ -45,6 +45,14 @@ tbody tr:nth-child(even) td, tbody tr.even td {background:#e5ecf9;}
 tfoot {font-style:italic;}
 caption {background:#eee;}
 
+table.null {margin-bottom:0; width:auto;}
+table.null th {font-weight:normal;}
+table.null thead th {background:none;}
+table.null th, table.null td, table.null caption {padding:0;}
+table.null tbody tr:nth-child(even) td, table.null tbody tr.even td {background:none;}
+table.null tfoot {font-style:none;}
+table.null caption {background:none;}
+
 #infobox-top { color:#0160af; border-bottom:1px solid #e1e1e1; padding:5px 0 15px; font-size:30px; font-weight:100; margin-bottom:20px;  }
 #infobox-top p { padding:0; margin:0; line-height:1.2; }
 #infobox-top span { font-size:19px; }
