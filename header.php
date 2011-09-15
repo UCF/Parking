@@ -52,8 +52,8 @@
 								// format and print page slug
 								global $parents;
 								if(in_array($slug, $parents))
-									printf('%s<span>%s', 
-										ucwords($slug), 
+									printf('%s<span>%s</span>', 
+										$post->post_title, 
 										str_replace('UCF', '', get_bloginfo('name')));
 								else
 								 	print 'Parking and <br>Transportation';

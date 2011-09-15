@@ -129,6 +129,7 @@ Config::$scripts = array(
 
 Config::$metas = array(
 	array('charset' => 'utf-8',),
+	array('description' => 'Parking and Transportation at the University of Central Florida',),
 );
 if ((bool)$theme_options['gw_verify']){
 	Config::$metas[] = array(
