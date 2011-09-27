@@ -5,9 +5,9 @@
 		<?php
 			$cat = get_category_by_slug('parking');
 			if(!$cat->term_id) echo "<!-- Parking Category Missing -->";
-			$posts = query_posts( array ( 'cat' => $cat->term_id, 'posts_per_page' => 1 ) );
+			$posts = new WP_Query( array ( 'cat' => $cat->term_id, 'posts_per_page' => 1 ) );
 			if($cat->term_id && count($posts) > 0):
-				the_post();
+				$posts->the_post();
 		?>
 		<article>
 			<h3><a class="bold" href="<?php the_permalink();?>"><?php the_title();?></a></h3>
@@ -23,9 +23,9 @@
 		<?php
 			$cat = get_category_by_slug('traffic');
 			if(!$cat->term_id) echo "<!-- Traffic Category Missing -->";
-			$posts = query_posts( array ( 'cat' => $cat->term_id, 'posts_per_page' => 1 ) );
+			$posts = new WP_Query( array ( 'cat' => $cat->term_id, 'posts_per_page' => 1 ) );
 			if($cat->term_id && count($posts) > 0):
-				the_post();
+				$posts->the_post();
 		?>
 		<article>
 			<h3><a class="bold" href="<?php the_permalink();?>"><?php the_title();?></a></h3>
