@@ -65,36 +65,36 @@ body, html { color:#313130; }
 #header h1 a { display:block; padding-left:125px; padding-top:18px; }
 #header h1 a span { font-size:22px; line-height:40px; display:block; }
 #header h1 a .unknown-size { font-size:40px; line-height:42px; display:block; width:325px;  }
-#header .permits   h1 { background-image:url('static/img/head-perm.png'); }
-#header .citations h1 { background-image:url('static/img/head-cita.png'); }
-#header .shuttles  h1 { background-image:url('static/img/head-shut.png'); }
-#header .rules     h1 { background-image:url('static/img/head-rule.png'); }
-#header .contact   h1 { background-image:url('static/img/head-mail.png'); padding-left:8px; }
-#header .forms     h1 { background-image:url('static/img/head-form.png'); }
+#header .permits     h1 { background-image:url('static/img/head-perm.png'); }
+#header .citations   h1 { background-image:url('static/img/head-cita.png'); }
+#header .shuttles    h1 { background-image:url('static/img/head-shut.png'); }
+#header .regulations h1 { background-image:url('static/img/head-rule.png'); }
+#header .contact     h1 { background-image:url('static/img/head-mail.png'); padding-left:8px; }
+#header .forms       h1 { background-image:url('static/img/head-form.png'); }
 
 #header ul { margin:0; padding:0; }
 #header ul li { display:block; float:left; margin:0; padding:0; }
 #header ul li a { display:block; width:85px; height:20px; padding-top:100px; font-size:16px; text-align:center; text-decoration:none; background-position:center top; background-repeat:no-repeat; }
-#header ul li a:hover { background-position: center -120px; }
-#header ul .permits   { background-image:url('static/img/nav-perm.png'); }
-#header ul .citations { background-image:url('static/img/nav-cita.png'); }
-#header ul .shuttles  { background-image:url('static/img/nav-shut.png'); }
-#header ul .rules     { background-image:url('static/img/nav-rule.png'); }
-#header ul .contact   { background-image:url('static/img/nav-mail.png'); }
-#header ul .forms     { background-image:url('static/img/nav-form.png'); }
+#header ul li a:hover   { background-position: center -120px; }
+#header ul .permits     { background-image:url('static/img/nav-perm.png'); }
+#header ul .citations   { background-image:url('static/img/nav-cita.png'); }
+#header ul .shuttles    { background-image:url('static/img/nav-shut.png'); }
+#header ul .regulations { background-image:url('static/img/nav-rule.png'); }
+#header ul .contact     { background-image:url('static/img/nav-mail.png'); }
+#header ul .forms       { background-image:url('static/img/nav-form.png'); }
 
 #home-menu { padding-bottom:40px; }
 #home-menu ul { margin:0; padding:0; }
 #home-menu ul li {display:block; float:left;  margin:0; padding:0; }
-#home-menu ul li a { display:block; font-size:35px; width:170px; padding-top:200px; height:40px; background-position:center -300px; text-decoration:none; font-weight:bold; color:black; text-align:center; }
+#home-menu ul li a { display:block; font-size:28px; width:170px; padding-top:200px; height:40px; background-position:center -300px; text-decoration:none; font-weight:bold; color:black; text-align:center; }
 .ie7 #home-menu ul li a { font-weight:normal; }
 #home-menu ul li a:hover { background-position: center 19px; }
-#home-permits   { background:url('static/img/icon-perm.png') top center no-repeat; }
-#home-citations { background:url('static/img/icon-cita.png') top center no-repeat; }
-#home-shuttles  { background:url('static/img/icon-shut.png') top center no-repeat; }
-#home-rules     { background:url('static/img/icon-rule.png') top center no-repeat; }
-#home-contact   { background:url('static/img/icon-mail.png') top center no-repeat; }
-#home-forms     { background:url('static/img/icon-form.png') top center no-repeat; }
+#home-permits     { background:url('static/img/icon-perm.png') top center no-repeat; }
+#home-citations   { background:url('static/img/icon-cita.png') top center no-repeat; }
+#home-shuttles    { background:url('static/img/icon-shut.png') top center no-repeat; }
+#home-regulations { background:url('static/img/icon-rule.png') top center no-repeat; }
+#home-contact     { background:url('static/img/icon-mail.png') top center no-repeat; }
+#home-forms       { background:url('static/img/icon-form.png') top center no-repeat; }
 
 .side-nav h2, #sidebar .side-nav h2 { font-size:10px; font-weight:bold; text-transform:uppercase; letter-spacing:2px; color:#333; margin:0; padding:0 0 10px 0; }
 .side-nav ul { margin:0; padding:0; }
