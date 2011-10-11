@@ -52,7 +52,7 @@
 								// format and print page slug
 								global $parents;
 								if(in_array($slug, $parents))
-									printf('%s<span>%s', 
+									printf('%s<span>%s</span>', 
 										ucwords($slug), 
 										str_replace('UCF', '', get_bloginfo('name')));
 								else

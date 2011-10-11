@@ -835,7 +835,7 @@ function header_title(){
 		$content = single_post_title('', FALSE);
 	}
 	elseif ( is_home() || is_front_page() ) { 
-		$content = get_bloginfo('description');
+		$content = False;
 	}
 	elseif ( is_page() ) { 
 		$content = single_post_title('', FALSE); 
@@ -872,6 +872,8 @@ function header_title(){
 		} else {
 			$elements = array(
 				'content' => $content,
+				'separator' => $separator,
+				'site_name' => $site_name,
 			);
 		}  
 	} else {

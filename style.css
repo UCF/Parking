@@ -1,8 +1,8 @@
 /*   
-Theme Name: UCF Parking and Transportation Services
+Theme Name: Parking and Transportation Services
 Author: UCF Web Communications
 Github Theme URI: https://github.com/UCF/Parking
-Version: v0.3.0
+Version: v1.2.7
 */
 
 body, html { color:#313130; }
@@ -14,7 +14,7 @@ body, html { color:#313130; }
 .park-button:hover { color:white; text-decoration:underline; }
 
 .page-content { padding:10px 0 35px; }
-.page-content p { font-weight:100; font-size:14px; line-height:26px; }
+.page-content p { font-weight:100; font-size:14px; line-height:22px; margin: 0 0 1.5em 0; }
 .page-content a { color:#0160af; text-decoration:none; }
 .page-content a:hover { text-decoration:underline; }
 .page-title { padding-top:10px; }
@@ -35,6 +35,23 @@ body, html { color:#313130; }
 
 
 .ie7 ul.light { font-family:helvetica; background:white; font-weight:normal; }
+
+/* from blueprint */
+table {margin-bottom:1.4em;width:100%;}
+th {font-weight:bold;}
+thead th {background:#c3d9ff;}
+th, td, caption {padding:4px 10px 4px 5px;}
+tbody tr:nth-child(even) td, tbody tr.even td {background:#e5ecf9;}
+tfoot {font-style:italic;}
+caption {background:#eee;}
+
+table.null {margin-bottom:0; width:auto;}
+table.null th {font-weight:normal;}
+table.null thead th {background:none;}
+table.null th, table.null td, table.null caption {padding:0;}
+table.null tbody tr:nth-child(even) td, table.null tbody tr.even td {background:none;}
+table.null tfoot {font-style:none;}
+table.null caption {background:none;}
 
 #infobox-top { color:#0160af; border-bottom:1px solid #e1e1e1; padding:5px 0 15px; font-size:30px; font-weight:100; margin-bottom:20px;  }
 #infobox-top p { padding:0; margin:0; line-height:1.2; }
@@ -70,7 +87,7 @@ body, html { color:#313130; }
 #header .shuttles    h1 { background-image:url('static/img/head-shut.png'); }
 #header .regulations h1 { background-image:url('static/img/head-rule.png'); }
 #header .contact     h1 { background-image:url('static/img/head-mail.png'); padding-left:8px; }
-#header .forms       h1 { background-image:url('static/img/head-form.png'); }
+#header .maps        h1 { background-image:url('static/img/head-maps.png'); }
 
 #header ul { margin:0; padding:0; }
 #header ul li { display:block; float:left; margin:0; padding:0; }
@@ -81,7 +98,7 @@ body, html { color:#313130; }
 #header ul .shuttles    { background-image:url('static/img/nav-shut.png'); }
 #header ul .regulations { background-image:url('static/img/nav-rule.png'); }
 #header ul .contact     { background-image:url('static/img/nav-mail.png'); }
-#header ul .forms       { background-image:url('static/img/nav-form.png'); }
+#header ul .maps        { background-image:url('static/img/nav-maps.png'); }
 
 #home-menu { padding-bottom:40px; }
 #home-menu ul { margin:0; padding:0; }
@@ -94,7 +111,7 @@ body, html { color:#313130; }
 #home-shuttles    { background:url('static/img/icon-shut.png') top center no-repeat; }
 #home-regulations { background:url('static/img/icon-rule.png') top center no-repeat; }
 #home-contact     { background:url('static/img/icon-mail.png') top center no-repeat; }
-#home-forms       { background:url('static/img/icon-form.png') top center no-repeat; }
+#home-maps        { background:url('static/img/icon-maps.png') top center no-repeat; }
 
 .side-nav h2, #sidebar .side-nav h2 { font-size:10px; font-weight:bold; text-transform:uppercase; letter-spacing:2px; color:#333; margin:0; padding:0 0 10px 0; }
 .side-nav ul { margin:0; padding:0; }
@@ -112,7 +129,7 @@ body, html { color:#313130; }
 #sidebar-content h2 { font-size:27px; margin:0; padding:0 0 5px; color:black; } 
 
 
-#below-fold { border-top:1px solid #e1e1e1; }
+#below-fold { border-top:1px solid #e1e1e1; clear:both; }
 #below-fold h2 { font-size:17px; color:#9c9a9a; margin:20px 0 8px; }
 #below-fold article { padding:0 10px 20px 0; font-size:12px; }
 #below-fold h3 { margin:0; padding:0 0 4px;; font-size:16px;  }
