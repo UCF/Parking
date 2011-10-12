@@ -148,7 +148,7 @@ register_nav_menu('sidebar-nav-one', "Sidebar Nav One");
 register_nav_menu('sidebar-nav-two', "Sidebar Nav Two");
 register_nav_menu('below-fold-nav' , "Below the Fold Navigation");
 global $parents;
-$parents = array("permits", "citations", "shuttles", "rules", "contact", "maps");
+$parents = array("permits", "citations", "shuttles", "regulations", "contact", "maps");
 add_image_size('alert', 47, 49, True);
 function gen_alerts_html()
 {		
