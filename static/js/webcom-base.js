@@ -28,8 +28,8 @@ Webcom.analytics = function($){
 
 Webcom.handleExternalLinks = function($){
 	$('a:not(.ignore-external)').each(function(){
-		var url  = $(this).attr('href');
-		var host = window.location.host.toLowerCase();
+		var url  = $(this).attr('href').replace('.','');
+		var host = window.location.host.toLowerCase().replace('.',''); //need replace for lame wp3dev & wp3.dev setup
 		
 		if (url && url.search(host) < 0 && url.search('http') > -1){
 			$(this).attr('target', '_blank');
