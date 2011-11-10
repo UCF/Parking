@@ -195,3 +195,16 @@ function gen_alerts_html()
 		return '<ul id="alerts">' . $alerts_html . '</ul>';
 }
 
+/**
+ * Shuttle Schedules Feed
+ **/
+add_feed('shuttles','feed_shuttles');
+function feed_shuttles($comment){
+	$page   = get_page_by_path('shuttles');
+	$args = array(
+		'post_type'     => 'page',
+		'post_parent'   => $page->ID,
+	);
+	query_posts( $args );
+	load_template('feed-rss2.php');
+}
