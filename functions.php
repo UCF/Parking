@@ -198,7 +198,7 @@ function gen_alerts_html()
 /**
  * Shuttle Schedules Feed
  **/
-add_feed('shuttles','feed_shuttles');
+add_feed('shuttle-schedule','feed_shuttles');
 function feed_shuttles($comment){
 	$page   = get_page_by_path('shuttles');
 	$args = array(
