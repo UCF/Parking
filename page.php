@@ -11,6 +11,8 @@
 	$content = preg_replace('/^(<br \/>\s+)+/', '', $content);
 	$content = preg_replace('/^\s*<\/p>/', '', $content);
 	$content = preg_replace('/^\s*<p><\/p>/', '', $content);
+	// fix absolute URLs for local dev
+	$content = preg_replace('/href="\//', 'href="' . trailingslashit(get_bloginfo('url')), $content);
 	
 	// shortcode, info-box top
 	global $short_codes;
