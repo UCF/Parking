@@ -196,15 +196,9 @@ function gen_alerts_html()
 }
 
 /**
- * Shuttle Schedules Feed
+ * Shuttles Content
  **/
-add_feed('shuttle-schedule','feed_shuttles');
-function feed_shuttles($comment){
-	$page   = get_page_by_path('shuttles');
-	$args = array(
-		'post_type'     => 'page',
-		'post_parent'   => $page->ID,
-	);
-	query_posts( $args );
-	load_template('feed-rss2.php');
+add_feed('shuttles-mobile','shuttles_mobile');
+function shuttles_mobile(){
+	load_template(THEME_DIR . '/templates/shuttles-mobile.php');
 }
