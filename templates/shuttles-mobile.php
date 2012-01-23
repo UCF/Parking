@@ -8,4 +8,6 @@ $content  = str_replace(']]>', ']]>', $content);
 $content  = preg_replace('/\s?class="[^"]+"/', '', $content);
 $content  = preg_replace('/<img[^>]+>/', '', $content);
 
+$content  = preg_replace('/href="\//', 'href="'.get_bloginfo('url').'/', $content);
+
 echo $content;
