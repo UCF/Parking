@@ -9,7 +9,7 @@ $slug = isset($post->post_parent) ?
 if($slug=='citations'): ?>
 	<a href="https://secure.parking.ucf.edu/citations/" class="park-button red">Pay Citation</a>
 <?php elseif($slug=='permits'): ?>
-	<a href="https://secure.parking.ucf.edu/PermitOrder/" class="park-button">Purchase Permits</a>
+	<a href="https://secure.parking.ucf.edu/PermitOrder/default.aspx" class="park-button">Purchase Permits</a>
 <?php endif;
 
 
