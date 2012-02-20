@@ -28,12 +28,14 @@ Webcom.analytics = function($){
 
 Webcom.handleExternalLinks = function($){
 	$('a:not(.ignore-external)').each(function(){
-		var url  = $(this).attr('href').replace(/\./g,'');
-		var host = window.location.host.toLowerCase().replace(/\./g,''); //need replace for lame wp3dev & wp3.dev setup
-		console.log(url, host);
-		if (url && url.search(host) < 0 && url.search('http') > -1){
-			$(this).attr('target', '_blank');
-			$(this).addClass('external');
+		var url  = $(this).attr('href');
+		if(url != undefined) {
+			url = url .replace(/\./g,'');
+			var host = window.location.host.toLowerCase().replace(/\./g,''); //need replace for lame wp3dev & wp3.dev setup
+			if (url && url.search(host) < 0 && url.search('http') > -1){
+				$(this).attr('target', '_blank');
+				$(this).addClass('external');
+			}
 		}
 	});
 };
