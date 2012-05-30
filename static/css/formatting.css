@@ -52,7 +52,7 @@ em{font-style: italic;}
 .bold { font-weight: normal; font-style: normal; line-height:normal; font-family: 'Helvetica Neue Bold', 'f1', 'Helvetica Bold', 'HelveticaBold', 'Helvetica-Bold', sans-serif; }
 .light { font-weight: normal; font-style: normal; line-height:normal; font-family: 'Helvetica Neue Light', 'f4', 'Helvetica Light', 'HelveNeuLig', 'Helvetica-Light', sans-serif; }
 .ulight { font-weight: normal; font-style: normal; line-height:normal; font-family: 'Helvetica Neue UltraLight', 'f2', 'Helvetica Ultra Light', 'HelveNeuUltLig', sans-serif; }
-.rock { font-weight: normal; font-style: normal; line-height:normal; font-family: 'Rockwell Light', 'f3', 'RockwellLight', 'Rockwell-Light', serif; }
+.rock { font-weight: normal; font-style: normal; line-height:normal; font-family: 'Rockwell Light', 'f3', 'RockwellLight', 'Rockwell-Light', serif !important; }
 
 
 /**
