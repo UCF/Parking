@@ -133,17 +133,17 @@ table.null caption {background:none;}
 #below-fold h2 { font-size:17px; color:#9c9a9a; margin:20px 0 8px; }
 #below-fold article { padding:0 10px 20px 0; font-size:12px; }
 #below-fold h3 { margin:0; padding:0 0 4px;; font-size:16px;  }
-#below-fold h3 a { text-decoration:none; }
+#below-fold h3 a { text-decoration:none; color:#313130;}
 #below-fold p { margin:0; padding:0; }
 #below-fold p a { color:#333333; text-decoration:none; font-family:helvetica, sans-serif; font-weight:normal; font-size:12px; font-weight:normal; line-height:1.2; }
 #search { width:100%; background:#e1e1e1; }
 #search form { padding:12px 20px 18px; }
 #search label { display:block; color:#c14d00; font-family:georgia, serif; font-weight:normal; padding-bottom:5px; font-size:16px;  }
 #search #s { width:65%; }
-#below-fold .more h3 { color:#9c9a9a; font-size:16px; margin:0; padding:20px 0 8px; }
+#below-fold .more h3 { color:#9c9a9a; font-size:16px; margin:0; padding:20px 0 8px; font-weight:normal;}
 .more ul { margin:0; padding:0; }
 .more ul li { display:block; width:48%; float:left; margin:0; padding:2px 0;  }
-.more ul li a { color:#0161b2; text-decoration:none; }
+.more ul li a { color:#0161b2; text-decoration:none; font-size:16px;}
 .more ul li a:hover {text-decoration:underline; }
 #more-wrap { clear:both; padding:5px 0 25px; }
 
