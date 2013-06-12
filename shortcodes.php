@@ -34,9 +34,12 @@ function get_infobox($atts){
 	// return a random selection
 	global $all_infoboxes;
 	$boxes = array();
-	foreach($atts as $slug){
-		if(isset($all_infoboxes[$slug])){
-			$boxes[] = $all_infoboxes[$slug];
+	if (!empty($atts)) {
+		$atts = is_array($atts) ? $atts : array($atts);
+		foreach($atts as $slug){
+			if(isset($all_infoboxes[$slug])){
+				$boxes[] = $all_infoboxes[$slug];
+			}
 		}
 	}
 	if(count($boxes) > 0) return $boxes[array_rand($boxes)];
