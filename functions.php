@@ -1,7 +1,7 @@
 <?php
 # Define stuff
 define('THEME_URL', get_bloginfo('stylesheet_directory'));
-define('THEME_DIR', get_stylesheet_directory());
+define('THEME_DIR', get_stylesheet_directory_uri());
 define('THEME_STATIC_URL', THEME_URL.'/static');
 define('THEME_IMG_URL', THEME_STATIC_URL.'/img');
 define('THEME_JS_URL', THEME_STATIC_URL.'/js');
@@ -106,7 +106,6 @@ Config::$links = array(
 
 Config::$styles = array(
 	array('admin' => True, 'src' => THEME_CSS_URL.'/admin.css',),
-	'http://universityheader.ucf.edu/bar/css/bar.css',
 	THEME_CSS_URL.'/jquery.css',
 	THEME_CSS_URL.'/blueprint-screen.css',
 	array('media' => 'print', 'src' => THEME_CSS_URL.'/blueprint-print.css',),
@@ -117,8 +116,8 @@ Config::$styles = array(
 
 Config::$scripts = array(
 	array('admin' => True, 'src' => THEME_JS_URL.'/admin.js',),
-	'http://universityheader.ucf.edu/bar/js/university-header.js',
-	array('name' => 'jquery', 'src' => 'http://code.jquery.com/jquery-1.6.1.min.js',),
+	'//universityheader.ucf.edu/bar/js/university-header.js',
+	array('name' => 'jquery', 'src' => '//code.jquery.com/jquery-1.6.1.min.js',),
 	THEME_JS_URL.'/jquery-ui.js',
 	THEME_JS_URL.'/jquery-browser.js',
 	THEME_JS_URL.'/jquery-uniform.js',
@@ -151,11 +150,11 @@ global $parents;
 $parents = array("permits", "citations", "shuttles", "regulations", "contact", "maps");
 add_image_size('alert', 47, 49, True);
 function gen_alerts_html()
-{		
+{
 		$alerts 		= get_posts(Array('post_type' => 'alert'));
 		$hidden_alerts	= Array();
 		$alerts_html 	= '';
-		
+
 		// Parse hidden alerts from cookie
 		if(isset($_COOKIE['parking_alerts'])) {
 			$raw_hidden_alerts = explode(',', htmlspecialchars($_COOKIE['parking_alerts']));
@@ -166,22 +165,22 @@ function gen_alerts_html()
 				}
 			}
 		}
-		
+
 		if(count($alerts) < 1) return;
-		
+
 		foreach($alerts as $alert) {
-			
+
 			$content  = $alert->post_content;
 			$content  = apply_filters('the_content', $content);
 			$content  = str_replace(']]>', ']]>', $content);
 			$type     = get_post_meta($alert->ID, 'alert_type', True);
 			$type     = empty($type) ? 'info' : $type;
-			
+
 			// Skip alerts hidden in the cookie (unless they've been modified since hidden)
 			if(isset($hidden_alerts[$alert->ID]) && strtotime($alert->post_modified) <= $hidden_alerts[$alert->ID]) {
 				continue;
 			}
-			
+
 			$id = sprintf('alert-%s-%s', $alert->ID, strtotime($alert->post_modified));
 			$alert_html = '<li class="'.$type.'" id="'.$id.'">
 								<div class="msg">
@@ -191,7 +190,7 @@ function gen_alerts_html()
 							</li>';
 			$alerts_html .= $alert_html."\n";
 		}
-		
+
 		return '<ul id="alerts">' . $alerts_html . '</ul>';
 }
 
@@ -202,3 +201,11 @@ add_feed('shuttles-mobile','shuttles_mobile');
 function shuttles_mobile(){
 	load_template(THEME_DIR . '/templates/shuttles-mobile.php');
 }
+
+function protocol_relative_attachment_url($url, $id) {
+    if (is_ssl()) {
+        $url = str_replace('http://', 'https://', $url);
+    }
+    return $url;
+}
+add_filter('wp_get_attachment_url', 'protocol_relative_attachment_url');

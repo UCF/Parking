@@ -1,8 +1,8 @@
-/*   
+/*
 Theme Name: Parking and Transportation Services
 Author: UCF Web Communications
 Github Theme URI: https://github.com/UCF/Parking
-Version: v1.2.14
+Version: v1.2.15
 */
 
 body, html { color:#313130; }
@@ -126,7 +126,7 @@ table.null caption {background:none;}
 .page-menu { padding-bottom:20px;  }
 .home .side-nav { padding:40px 0 10px;  }
 #sidebar-content { padding:0 0 40px; }
-#sidebar-content h2 { font-size:27px; margin:0; padding:0 0 5px; color:black; } 
+#sidebar-content h2 { font-size:27px; margin:0; padding:0 0 5px; color:black; }
 
 
 #below-fold { border-top:1px solid #e1e1e1; clear:both; }
