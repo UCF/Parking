@@ -202,7 +202,7 @@ function shuttles_mobile(){
 	load_template(THEME_DIR . '/templates/shuttles-mobile.php');
 }
 
-function protocol_relative_attachment_url($url, $id) {
+function protocol_relative_attachment_url($url) {
     if (is_ssl()) {
         $url = str_replace('http://', 'https://', $url);
     }
