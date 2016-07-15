@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /**
  * Empty shortcode
@@ -15,7 +15,7 @@ add_shortcode('empty-shortcode', 'sc_empty_shortcode');
 
 $all_infoboxes = array();
 $boxes = get_posts(array(
-	'numberposts' => -1, 
+	'numberposts' => -1,
 	'post_type'   => 'infobox'
 ));
 foreach($boxes as $box){
@@ -101,14 +101,14 @@ function shortcode_menu($atts, $content = null) {
 			}
 		}
 	}
-	
+
 	$title = (isset($atts['title']) && !empty($atts['title'])) ? $atts['title'] : false;
-	
+
 	$short_codes['menu']['pages']   = $pages;
 	$short_codes['menu']['anchors'] = $anchors;
 	$short_codes['menu']['broken']  = $broken;
 	$short_codes['menu']['title']   = $title;
-	
+
 	return '';
 }
 add_shortcode('menu', 'shortcode_menu');
@@ -130,7 +130,7 @@ add_shortcode('no-sidebar', 'shortcode_nosidebar');
  **/
 function sc_object($attr){
 	if (!is_array($attr)){return '';}
-	
+
 	$defaults = array(
 		'tags'       => '',
 		'categories' => '',
@@ -138,11 +138,11 @@ function sc_object($attr){
 		'limit'      => -1,
 	);
 	$options = array_merge($defaults, $attr);
-	
+
 	$tax_query = array(
 		'relation' => 'OR',
 	);
-	
+
 	if ($options['tags']){
 		$tax_query[] = array(
 			'taxonomy' => 'post_tag',
@@ -150,7 +150,7 @@ function sc_object($attr){
 			'terms'    => explode(' ', $options['tags']),
 		);
 	}
-	
+
 	if ($options['categories']){
 		$tax_query[] = array(
 			'taxonomy' => 'category',
@@ -158,7 +158,7 @@ function sc_object($attr){
 			'terms'    => explode(' ', $options['categories']),
 		);
 	}
-	
+
 	$query_array = array(
 		'tax_query'      => $tax_query,
 		'post_status'    => 'publish',
@@ -166,11 +166,11 @@ function sc_object($attr){
 		'posts_per_page' => $options['limit'],
 	);
 	$query = new WP_Query($query_array);
-	
+
 	global $post;
 	ob_start();
 	?>
-	
+
 	<ul class="object-list <?=$options['type']?>">
 		<?php while($query->have_posts()): $query->the_post();
 		$class = get_custom_post_type($post->post_type);
@@ -180,11 +180,42 @@ function sc_object($attr){
 		</li>
 		<?php endwhile;?>
 	</ul>
-	
+
 	<?php
 	$results = ob_get_clean();
 	wp_reset_postdata();
 	return $results;
 }
 add_shortcode('sc-object', 'sc_object');
+
+function sc_iframe($attr, $content=null){
+
+  $iframe_src = ( isset( $attr['src'] ) ) ? $attr['src'] : null;
+  $iframe_height = ( isset( $attr['height'] ) ) ? $attr['height'] : 400;
+  $iframe_width = ( isset( $attr['width'] ) ) ? $attr['width'] : 550;
+  $iframe_style = ( isset( $attr['style'] ) ) ? $attr['style'] : null;
+  $iframe_class = ( isset( $attr['class'] ) ) ? $attr['class'] : null;
+
+  ob_start();
+  ?>
+
+	<iframe src="<?php echo $iframe_src; ?>" frameborder="0" height="<?php echo $iframe_height; ?>" width="<?php echo $iframe_width; ?>"<?php
+
+	if ($iframe_style) {
+		echo 'style="' . $iframe_style . '" ';
+	}
+
+	if ($iframe_class) {
+		echo ' class="' . $iframe_class . '" ';
+	}
+
+	?>></iframe>
+
+  <?php
+  $html = ob_get_clean();
+
+  return $html;
+}
+add_shortcode('iframe', 'sc_iframe');
+
 ?>
