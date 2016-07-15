@@ -188,16 +188,19 @@ function sc_object($attr){
 }
 add_shortcode('sc-object', 'sc_object');
 
+/**
+ * Replaces iframe shortcode with iframe tag
+ **/
 function sc_iframe($attr, $content=null){
 
-  $iframe_src = ( isset( $attr['src'] ) ) ? $attr['src'] : null;
-  $iframe_height = ( isset( $attr['height'] ) ) ? $attr['height'] : 400;
-  $iframe_width = ( isset( $attr['width'] ) ) ? $attr['width'] : 550;
-  $iframe_style = ( isset( $attr['style'] ) ) ? $attr['style'] : null;
-  $iframe_class = ( isset( $attr['class'] ) ) ? $attr['class'] : null;
+	$iframe_src = ( isset( $attr['src'] ) ) ? $attr['src'] : null;
+	$iframe_height = ( isset( $attr['height'] ) ) ? $attr['height'] : 400;
+	$iframe_width = ( isset( $attr['width'] ) ) ? $attr['width'] : 550;
+	$iframe_style = ( isset( $attr['style'] ) ) ? $attr['style'] : null;
+	$iframe_class = ( isset( $attr['class'] ) ) ? $attr['class'] : null;
 
-  ob_start();
-  ?>
+	ob_start();
+	?>
 
 	<iframe src="<?php echo $iframe_src; ?>" frameborder="0" height="<?php echo $iframe_height; ?>" width="<?php echo $iframe_width; ?>"<?php
 
@@ -211,10 +214,10 @@ function sc_iframe($attr, $content=null){
 
 	?>></iframe>
 
-  <?php
-  $html = ob_get_clean();
+	<?php
+	$html = ob_get_clean();
 
-  return $html;
+	return $html;
 }
 add_shortcode('iframe', 'sc_iframe');
 
