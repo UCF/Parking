@@ -382,9 +382,9 @@ function shortcodes(){
 
 	# Auto generated shortcode documentation.
 	$codes = array();
-	$auto  = array_filter(installed_custom_post_types(), create_function('$c', '
+	$auto  = array_filter(installed_custom_post_types(), function( $c ) {
 		return $c->options("use_shortcode");
-	'));
+	});
 	foreach($auto as $code){
 		$scode  = $code->options('name').'-list';
 		$plural = $code->options('plural_name');
@@ -993,9 +993,9 @@ function disallow_direct_load($page){
 function installed_custom_post_types(){
 	$installed = Config::$custom_post_types;
 
-	return array_map(create_function('$class', '
+	return array_map(function( $class ) {
 		return new $class;
-	'), $installed);
+	}, $installed);
 }
 
 
