@@ -382,9 +382,9 @@ function shortcodes(){
 
 	# Auto generated shortcode documentation.
 	$codes = array();
-	$auto  = array_filter(installed_custom_post_types(), create_function('$c', '
+	$auto  = array_filter(installed_custom_post_types(), function( $c ) {
 		return $c->options("use_shortcode");
-	'));
+	});
 	foreach($auto as $code){
 		$scode  = $code->options('name').'-list';
 		$plural = $code->options('plural_name');
@@ -571,7 +571,7 @@ function get_search_results(
 	if (strlen($query) > 0){
 		$query_string = http_build_query($arguments);
 		$url          = $search_url.'?'.$query_string;
-		$response     = file_get_contents($url);
+		$response     = wp_remote_retrieve_body( wp_remote_get( $url ) );
 
 		if ($response){
 			$xml   = simplexml_load_string($response);
@@ -993,9 +993,9 @@ function disallow_direct_load($page){
 function installed_custom_post_types(){
 	$installed = Config::$custom_post_types;
 
-	return array_map(create_function('$class', '
+	return array_map(function( $class ) {
 		return new $class;
-	'), $installed);
+	}, $installed);
 }
 
 
